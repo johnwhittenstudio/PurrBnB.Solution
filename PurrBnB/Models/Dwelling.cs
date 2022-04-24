@@ -12,6 +12,9 @@ namespace PurrBnB.Models
     }
 
       public int DwellingId { get; set ; }
+      [Required]
+      public string DwellingName { get; set; }
+      [Required]
       public string DwellingOwnerName { get; set; }
       [Required]
       public string DwellingType { get; set;}
@@ -35,7 +38,7 @@ namespace PurrBnB.Models
 
 
       public virtual ApplicationUser User { get; set; }
-      //public virtual ICollection<DwellingPet> JoinEntities {get; set; }
+      // public virtual ICollection<DwellingPet> JoinEntities {get; set; }
       //public virtual ICollection<DwellingReservation> JoinEntities2 {get; set; }
  
   }
