@@ -1,0 +1,29 @@
+@{
+  Layout = "_Layout";
+}
+
+@using PurrBnB.ViewModels
+
+@model RegisterViewModel
+
+<h2>Register a new user</h2>
+<hr />
+@using (Html.BeginForm("Register", "Account", FormMethod.Post))
+{
+    @Html.LabelFor(user => user.Email)
+    <span> &nbsp; </span>
+    @Html.TextBoxFor(user=> user.Email, new { placeholder = " user@email.com", @class = "form-input" })
+    <span> &nbsp; &nbsp; &nbsp; </span>
+    @Html.LabelFor(user=> user.Password)
+    <span> &nbsp; </span>
+    @Html.PasswordFor(user=> user.Password, new { placeholder = " ********", @class = "form-input" })
+
+    @Html.LabelFor(user=> user.ConfirmPassword)
+    <span> &nbsp; </span>
+    @Html.PasswordFor(user=> user.ConfirmPassword, new { placeholder = " ********", @class = "form-input" })
+    <span> &nbsp; </span>
+    <input type="submit" value="Register" />
+    <br>
+    <br>
+    <em><label style="font-size:0.9vw" for="password">password must contain at least 6 letters, 1 number, & 1 special character</label></em>
+}
