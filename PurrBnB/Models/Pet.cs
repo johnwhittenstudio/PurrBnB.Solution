@@ -36,6 +36,9 @@ namespace PurrBnB.Models
       [Required]
       [Column("Personality")]
       public string Personality { get; set; }
+      [Required]
+      [Column("Species")]
+      public string Species { get; set; }
       public virtual ApplicationUser User { get; set; }
       public virtual ICollection<DwellingPet> JoinEntities { get; }
  

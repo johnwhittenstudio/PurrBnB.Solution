@@ -38,14 +38,11 @@
                 <span> &nbsp; </span>
                 <span> &nbsp; </span>
                 @Html.LabelFor(model => model.GroundLevelAccess)
-                @Html.CheckBoxFor(model => model.GroundLevelAccess, new {@checked = "checked"})
-                <span> &nbsp; </span>
-                <span> &nbsp; </span>
+                @Html.CheckBoxFor(model => model.GroundLevelAccess, new { @required  = "required"})
                 <span> &nbsp; </span>
                 <span> &nbsp; </span>
                 @Html.LabelFor(model => model.Kitchen)
                 @Html.CheckBoxFor(model => model.Kitchen, new {@checked = "checked"})
-
                 <span> &nbsp; </span>
                 @Html.LabelFor(model => model.NumberOfPeopleAllowed)
                 <span> &nbsp; </span>
@@ -60,11 +57,6 @@
                 @Html.LabelFor(model => model.Bathrooms)
                 <span> &nbsp; </span>
                 @Html.TextBoxFor(model => model.Bathrooms, new { @required  = "required"})
-                <span> &nbsp; </span>
-                <span> &nbsp; </span> 
-                @Html.LabelFor(model => model.PrivateAccess)
-                <span> &nbsp; </span>
-                @Html.TextBoxFor(model => model.PrivateAccess, new { @required  = "required"})
                 <span> &nbsp; </span>
                 <span> &nbsp; </span> 
                 @Html.LabelFor(model => model.Accomodations)

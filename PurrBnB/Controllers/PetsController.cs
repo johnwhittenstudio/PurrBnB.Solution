@@ -20,15 +20,19 @@ namespace  PurrBnB.Controllers
   {
     _db = db;
   }
+
   public ActionResult Index()
     {
-      return View(_db.Pets.ToList());
+      List<Pet> model = _db.Pets.OrderBy(x => x.Name).ToList();
+      return View(model);
     }
+
     public ActionResult Create()
     {
       ViewBag.DwellingId = new SelectList(_db.Dwellings, "DwellingId", "Name");
       return View();
     }
+
     [HttpPost]
     public ActionResult Create(Pet pet, int DwellingId)
     {
@@ -41,5 +45,44 @@ namespace  PurrBnB.Controllers
       }
       return RedirectToAction("Index");
     }
+
+    public ActionResult Details(int id)
+    {
+      var thisPet = _db.Pets
+          .Include(pet => pet.JoinEntities)
+          .ThenInclude(join => join.Dwelling)
+          .FirstOrDefault(pet => pet.PetId == id);
+      return View(thisPet);
+    }
+
+    public ActionResult Edit(int id)
+    {
+      var thisPet = _db.Pets.FirstOrDefault(pet => pet.PetId == id);
+      return View(thisPet);
+    }
+
+    [HttpPost]
+    public ActionResult Edit(Pet pet)
+    {
+      _db.Entry(pet).State = EntityState.Modified;
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
+
+    public ActionResult Delete(int id)
+    {
+      var thisPet = _db.Pets.FirstOrDefault(pet => pet.PetId == id);
+      return View(thisPet);
+    }
+
+    [HttpPost, ActionName("Delete")]
+    public ActionResult DeleteConfirmed(int id)
+    {
+      var thisPet = _db.Pets.FirstOrDefault(pet => pet.PetId == id);
+      _db.Pets.Remove(thisPet);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
+
   }
 }

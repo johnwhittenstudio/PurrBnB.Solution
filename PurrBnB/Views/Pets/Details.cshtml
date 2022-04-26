@@ -1,0 +1,159 @@
+@{
+  Layout = "_Layout";
+}
+
+@model PurrBnB.Models.Pet
+<div class="container">
+  <br>
+  <br>
+  <div class="col-md-12">
+    <div class=row>
+      &nbsp;
+      &nbsp;
+      &nbsp;
+      &nbsp;
+      <div id="card" class="card border-dark mb-3" style="position: center; width: 100%; height: 50%">
+              <div class="card-header">
+              <center><strong><h1 id="title" style="font-size:4vw">@Html.DisplayFor(model => model.Name) Details </h1> </strong> </center>
+            </div>
+            <table id="table" class="table" style="width: 100%">
+                <thead>
+                  <tr>
+                    <th>
+                        <em>PetId</em>
+                    </th>
+                    <th>
+                        <em>Name</em>
+                    </th>
+                    <th>
+                        <em>Age</em>
+                    </th>
+                    <th>
+                        <em>Color</em>
+                    </th>
+                    <th>
+                        <em>Interests</em>
+                    </th>
+                    <th>
+                        <em>Favorite Toys</em>
+                    </th>
+                    <th>
+                        <em>Schedule</em>
+                    </th>
+                    <th>
+                        <em>Personality</em>
+                    </th>
+                    <th>
+                        <em>Species</em>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr id="table" class="table">
+                    <td width 10%>
+                        <h4>@Html.DisplayFor(model => model.PetId)</h4>
+                    </td>
+                    <td width 50%>
+                        <h4>@Html.DisplayFor(model => model.Name)</h4>
+                    </td>
+                    <td width 50%>
+                        <h4>@Html.DisplayFor(model => model.Age)</h4>
+                    </td>
+                    <td width 50%>
+                        <h4>@Html.DisplayFor(model => model.Color)</h4>
+                    </td>
+                    <td width 50%>
+                        <h4>@Html.DisplayFor(model => model.Interests)</h4>
+                    </td>
+                    <td width 50%>
+                        <h4>@Html.DisplayFor(model => model.FavoriteToys)</h4>
+                    </td>
+                    <td width 50%>
+                        <h4>@Html.DisplayFor(model => model.Schedule)</h4>
+                    </td>
+                    <td width 50%>
+                        <h4>@Html.DisplayFor(model => model.Personality)</h4>
+                    </td>
+                    <td width 50%>
+                        <h4>@Html.DisplayFor(model => model.Species)</h4>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              &nbsp;
+              &nbsp;
+              @* @if (@Model.JoinEntities.Count == 0) *@
+              {
+              <center><h3>This pet does not currently have a dwelling</h3></center>
+              }
+              else
+              {
+                <table id="table" class ="table" style="width: 100%">
+                  <thead>
+                  <tr>
+                    <th>
+                        &nbsp;
+                    </th>
+                    <th>
+                        <em>Dwelling</em>
+                    </th>
+                    <th>
+                        &nbsp;
+                    </th>
+                    <th>
+                        &nbsp;
+                    </th>
+                  </tr>
+                  </thead>
+                <tbody>
+                @* @foreach (var join in Model.JoinEntities) *@
+                  {
+                  <tr id="table" class="table">
+                    <td width 10%>
+                        &nbsp;
+                    </td>
+                    <td width 40%>
+                      @* <h2>@join.Dwelling.Type</h2> *@
+                    </td>
+                    <td width 10%>
+                        &nbsp;
+                    </td>
+                    <td width 10%>
+                        &nbsp;
+                    </td>
+                    <td width 40%>
+                      @using (Html.BeginForm("DeleteDwelling", "Pets"))
+                      {
+                        @* @Html.Hidden("joinId", @join.DwellingPetId) *@
+                        <input type="submit" value="Remove Dwelling" id="button" class="btn btn-outline my-sm-0" />
+                      }
+                    </td>
+                    <td width 40%>
+                      &nbsp;
+                    </td>
+                    <td width 40%>
+                      &nbsp;
+                    </td>
+                    <td width 40%>
+                      &nbsp;
+                    </td>
+                    <td width 40%>
+                      &nbsp;
+                    </td>
+                  </tr>
+                  }
+                </tbody>
+              </table>
+              }
+            &nbsp;
+            &nbsp;
+            <center><button id="button" type="button" class="btn btn-outline my-sm-0" style="max-height: 5rem; max-width: 15rem;">@Html.ActionLink("Add a Dwelling", "AddDwelling", new { id = Model.PetId })</button>
+            &nbsp;
+            &nbsp;
+            <button id="button" type="button" class="btn btn-outline my-sm-0" style="max-height: 5rem; max-width: 15rem;">@Html.ActionLink("Back to listings", "Index")</button></center>
+            &nbsp;
+            &nbsp;
+      </div>
+    </div>
+  </div>
+</div>
