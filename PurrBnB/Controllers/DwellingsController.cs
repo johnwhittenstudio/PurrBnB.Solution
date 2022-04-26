@@ -25,7 +25,8 @@ namespace PurrBnB.Controllers
 
     public ActionResult Index()
     {
-      List<Dwelling> model = _db.Dwellings.OrderBy(dwelling => dwelling.DwellingOwnerName).ToList();
+      // List<Dwelling> model = _db.Dwellings.OrderBy(dwelling => dwelling.DwellingOwnerName).ToList();
+      List<Dwelling> model = _db.Dwellings.OrderBy(x => x.DwellingName).ToList();
       return View(model);
     }
 

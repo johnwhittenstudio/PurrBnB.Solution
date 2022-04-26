@@ -13,7 +13,6 @@ for details on configuring this project to bundle and minify static web assets. 
  /* font-family: 'Permanent Marker', cursive; */
  /* font-family: 'Prompt', sans-serif; */
 
-
 a.navbar-brand {
   white-space: normal;
   text-align: center;
@@ -83,7 +82,6 @@ body {
   line-height: 60px; /* Vertically center the text there */
 }
 
-.pawsLogo {
-  height: 50px;
-  width: 45px;  
+.navbar-nav {
+  margin-left: 25px;
 }

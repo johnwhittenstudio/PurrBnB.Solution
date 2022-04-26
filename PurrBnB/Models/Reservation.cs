@@ -6,27 +6,19 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PurrBnB.Models
 {
-  // [Table("Reservation")]
   public class Reservation
   {
     public Reservation()
     {
       // this.JoinEntities = new HashSet<Model1Model2>();
     }
-
-    // [Key]
-    // [Column("ReservationId")]
+//Fri sat 
+// sun-th
     public int ReservationId { get; set; }
-    // [Required]
-    // [Column("Start Date")]
     public DateTime StartDate { get; set; }
-    // [Required]
-    // [Column("End Date")]
     public DateTime EndDate { get; set; }
-    // [Required]
-    // [Column("Cost Per Night")]
     public float CostPerNight { get; set; }
-    // public virtual ICollection<Model1Model2> JoinEntities { get; set; }
+
     public virtual DwellingReservation DwellingReservation {get; set; } 
     public virtual ApplicationUser ApplicationUser {get; set; } // rentee
   }

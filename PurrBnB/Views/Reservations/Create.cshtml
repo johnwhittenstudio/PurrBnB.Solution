@@ -3,3 +3,18 @@
 }
 
 @model PurrBnB.Models.Reservation
+<h2>Enter new reservaton</h2>
+
+@using (Html.BeginForm())
+{
+  @Html.LabelFor(model => model.StartDate)
+  @Html.TextBoxFor(model => model.StartDate)
+  
+  @Html.LabelFor(model => model.EndDate)
+  @Html.TextBoxFor(model => model.EndDate)
+
+  @Html.Label("Add Reservation")
+  @Html.DropDownList("ReservationId", "Select Dwelling")
+
+  <input type="submit" value="Save" />
+}

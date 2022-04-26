@@ -1,10 +1,11 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container">
     <a class="navbar-brand" href="#">
-      <img src="~/img/paws_50x45.png" alt="" width="50" height="45" class="d-inline-block align-text-top">
-      PurrBnB
+      <img src="~/img/purrBnBLogo.svg" alt="" width="50" height="45" class="d-inline-block align-text-middle">
     </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <h2>PurrBnB</h2>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
@@ -24,26 +25,8 @@
             @Html.ActionLink("Reservation", "Index", "Reservations", null, new { @class = "nav-link"})
           </a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link">
-            <form id="searchBar" class="form-inline my-sm-0">
-              <a href='~/Account/Index'><button id="button" type="button" class="btn btn-outline-e6ab8c; my-sm-0"
-              style="width:150px">Login</button></a><br>
-            </form>
-          </a>
-        </li>
       </ul>
     </div>
+    <a class="nav-link btn btn-sm btn-primary" href='~/Account/Index'>Login</a>
   </div>
 </nav>
-
-
-    <!-- <li class="nav-item">
-      @Html.ActionLink("Home", "Index", "Home", null, new { @class = "nav-link"})
-    </li>
-    <li class="nav-item">
-      @Html.ActionLink("Dwelling", "Index", "Dwellings", null, new { @class = "nav-link"})
-    </li>
-    <li class="nav-item">
-      @Html.ActionLink("Reservation", "Index", "Reservations", null, new { @class = "nav-link"})
-    </li> -->
