@@ -27,5 +27,7 @@ namespace PurrBnB.Models
     // [Column("Cost Per Night")]
     public float CostPerNight { get; set; }
     // public virtual ICollection<Model1Model2> JoinEntities { get; set; }
+    public virtual DwellingReservation DwellingReservation {get; set; } 
+    public virtual ApplicationUser ApplicationUser {get; set; } // rentee
   }
 }

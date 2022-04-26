@@ -11,23 +11,7 @@
 
 <body>
   <div class="container mt-5">
-    <div class="row">
-      <h1 id="logo">PurrBnB</h1>
-      <ul class="nav row">
-        <li class="nav-item">
-          @Html.ActionLink("Home", "Index", "Home", null, new { @class = "nav-link"})
-        </li>
-        <li class="nav-item">
-          @Html.ActionLink("Dwelling", "Index", "Dwellings", null, new { @class = "nav-link"})
-        </li>
-        <li class="nav-item">
-          @Html.ActionLink("Reservation", "Index", "Reservations", null, new { @class = "nav-link"})
-        </li>
-      </ul>
-      <form id="searchBar" class="form-inline my-sm-0">
-        <a href='~/Account/Index'><button id="button" type="button" class="btn btn-outline-e6ab8c; my-sm-0" style="width:150px">Login</button></a><br>
-      </form>
-    </div>
+  <partial name="_NavbarPartial"/>  
     <hr size="8" width="100%" color="e6ab8c" class="mr-5">
     @RenderBody()
     @await Html.PartialAsync("Footer")

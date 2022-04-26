@@ -9,7 +9,7 @@ namespace PurrBnB.Models
   {
     public Pet()
     {
-      // this.JoinEntities = new HashSet<DwellingPet>();
+      this.JoinEntities = new HashSet<DwellingPet>();
     }
 
       [Key]
@@ -37,7 +37,7 @@ namespace PurrBnB.Models
       [Column("Personality")]
       public string Personality { get; set; }
       public virtual ApplicationUser User { get; set; }
-      // public virtual ICollection<DwellingPet> JoinEntities { get; }
+      public virtual ICollection<DwellingPet> JoinEntities { get; }
  
   }
 }

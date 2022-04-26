@@ -56,5 +56,75 @@ namespace PurrBnB.Controllers
       return RedirectToAction("Index");
     }
 
+    public ActionResult Details(int id)
+    {
+      var thisDwelling = _db.Dwellings
+          .Include(dwelling => dwelling.JoinEntities)
+          .ThenInclude(join => join.Pet)
+          .FirstOrDefault(dwelling => dwelling.DwellingId == id);
+      return View(thisDwelling);
+    }
+
+    public ActionResult Edit(int id)
+    {
+      var thisDwelling = _db.Dwellings.FirstOrDefault(dwelling => dwelling.DwellingId == id);
+      ViewBag.PetId = new SelectList(_db.Pets, "PetId", "Name");
+      return View(thisDwelling);
+    }
+
+    [HttpPost]
+    public ActionResult Edit(Dwelling dwelling, int PetId)
+    {
+      if (PetId != 0)
+      {
+        _db.DwellingPet.Add(new DwellingPet() { PetId = PetId, DwellingId = dwelling.DwellingId});
+      }
+      _db.Entry(dwelling).State = EntityState.Modified;
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
+  
+    public ActionResult AddPet(int id)
+    {
+      var thisDwelling = _db.Dwellings.FirstOrDefault(dwelling => dwelling.DwellingId == id);
+      ViewBag.PetId = new SelectList(_db.Pets, "PetId", "Name");
+      return View(thisDwelling);
+    }
+
+    [HttpPost]
+    public ActionResult AddPet(Dwelling dwelling, int PetId)
+    {
+      if (PetId != 0)
+      {
+        _db.DwellingPet.Add(new DwellingPet() { PetId = PetId, DwellingId = dwelling.DwellingId });
+        _db.SaveChanges();
+      }
+      return RedirectToAction("Index");
+    }
+
+    public ActionResult Delete(int id)
+    {
+      var thisDwelling = _db.Dwellings.FirstOrDefault(dwelling => dwelling.DwellingId == id);
+      return View(thisDwelling);
+    }
+
+    [HttpPost, ActionName("Delete")]
+    public ActionResult DeleteConfirmed(int id)
+    {
+      var thisDwelling = _db.Dwellings.FirstOrDefault(dwelling => dwelling.DwellingId == id);
+      _db.Dwellings.Remove(thisDwelling);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
+
+    [HttpPost]
+    public ActionResult DeletePet(int joinId)
+    {
+      var joinEntry = _db.DwellingPet.FirstOrDefault(entry => entry.DwellingPetId == joinId);
+      _db.DwellingPet.Remove(joinEntry);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
+
   }
 }
