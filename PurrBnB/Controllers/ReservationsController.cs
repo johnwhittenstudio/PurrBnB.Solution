@@ -1,9 +1,14 @@
-using PurrBnB.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using System.Threading.Tasks;
+using System.Security.Claims;
+using System;
+using PurrBnB.Models;
 
 
 namespace PurrBnB.Controllers
@@ -11,17 +16,21 @@ namespace PurrBnB.Controllers
   public class ReservationsControllers : Controller
   {
      private readonly PurrBnBContext _db;
+     private readonly UserManager<ApplicationUser> _userManager;
      public ReservationsControllers(PurrBnBContext db)
     {
       _db = db;
     }
     public ActionResult Index()
     {
-      return View(_db.Reservations.ToList());
+      // return View(_db.Reservations.ToList());
+      List<Reservation> model = _db.Reservations.ToList();
+      Console.WriteLine("We're in the Reservations Index!");
+      return View(model);
     }
     public ActionResult Create()
     {
-      ViewBag.DwellingId = new SelectList(_db.Dwellings, "DwellingId", "Name");
+      ViewBag.DwellingId = new SelectList(_db.Dwellings, "DwellingId", "DwellingName");
       return View();
     }
     [HttpPost]
@@ -42,13 +51,13 @@ namespace PurrBnB.Controllers
         .Include(reservation => reservation.DwellingReservation)
         .ThenInclude(join => join.Dwelling)
         .FirstOrDefault(model => model.ReservationId == id);
-      ViewBag.DwellingId = new SelectList(_db.Dwellings, "DwellingId", "Name");
+      ViewBag.DwellingId = new SelectList(_db.Dwellings, "DwellingId", "DwellingName");
       return View(foundReservation);
     }
     public ActionResult Edit(int id)
     {
       var foundReservation = _db.Reservations.FirstOrDefault(reservation => reservation.ReservationId == id);
-      ViewBag.DoctorId = new SelectList(_db.Dwellings, "DwellingId", "Name");
+      ViewBag.DoctorId = new SelectList(_db.Dwellings, "DwellingId", "DwellingName");
       return View(foundReservation);
     }
     [HttpPost]

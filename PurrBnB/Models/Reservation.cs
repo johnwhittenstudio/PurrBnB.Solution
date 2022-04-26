@@ -19,6 +19,8 @@ namespace PurrBnB.Models
     public DateTime EndDate { get; set; }
     public float CostPerNight { get; set; }
 
+    // public virtual ICollection<DwellingReservation> JoinDwellingReservation { get; set; }
+
     public virtual DwellingReservation DwellingReservation {get; set; } 
     public virtual ApplicationUser ApplicationUser {get; set; } // rentee
   }

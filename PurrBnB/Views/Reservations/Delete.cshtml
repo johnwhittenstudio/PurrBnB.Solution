@@ -1,0 +1,14 @@
+@{
+  Layout = "_Layout";
+}
+
+@model PurrBnB.Models.Reservation
+
+<h2>Delete</h2>
+
+<h4>Delete this reservation: @Html.DisplayFor(model => model.StartDate)</h4>
+
+@using (Html.BeginForm())
+{
+  <input type="submit" value="Delete" class="btn btn-danger" />
+}

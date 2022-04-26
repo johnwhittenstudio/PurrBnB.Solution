@@ -85,3 +85,7 @@ body {
 .navbar-nav {
   margin-left: 25px;
 }
+
+.dwellingsDetails > th {
+  text-align: center;
+}

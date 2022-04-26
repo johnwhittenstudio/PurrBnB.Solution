@@ -2,5 +2,52 @@
   Layout = "_Layout";
 }
 
-@model PurrBnB.Models.Reservation
+@using PurrBnB.Models;
+@model IEnumerable<PurrBnB.Models.Reservation>
+<div class="container">
+  <br>
+  <br>
+  <div class="col-md-12">
+    <div class=row>
+      &nbsp;
+      &nbsp;
+      &nbsp;
+      &nbsp;
+      <div id="card" class="card border-dark mb-3" style="position: center; width: 100%; height: 50%">
+        <div class="card-header">
+          <center><strong>
+              <h1 id="title" style="font-size:4vw">Reservations</h1>
+            </strong></center>
+        </div>
+        &nbsp;
+        @if (@Model.Count() == 0)
+        {
+          <center>
+            <h3>No reservations have been added yet!</h3>
+          </center>
+        }
 
+        <center>
+          @foreach (Reservation reservation in Model)
+          {
+            <h3>@Html.ActionLink($"{reservation.StartDate}", "Details", new { id = reservation.ReservationId })</h3>
+          }
+        </center>
+        &nbsp;
+        &nbsp;
+        <center><button id="button" type="button" class="btn btn-outline-dark my-sm-0"
+            style="max-height: 5rem; max-width: 15rem;">@Html.ActionLink("Add new reservation", "Create")</button>
+          &nbsp;
+          <button id="button" type="button" class="btn btn-outline-dark my-sm-0"
+            style="max-height: 5rem; max-width: 15rem;">@Html.ActionLink("Home", "Index", "Home")</button>
+        </center>
+        &nbsp;
+        &nbsp;
+        &nbsp;
+        &nbsp;
+        &nbsp;
+        &nbsp;
+      </div>
+    </div>
+  </div>
+</div>
