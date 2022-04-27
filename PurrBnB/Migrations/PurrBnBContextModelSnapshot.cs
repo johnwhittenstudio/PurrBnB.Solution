@@ -225,6 +225,9 @@ namespace PurrBnB.Migrations
                     b.Property<int>("Bedrooms")
                         .HasColumnType("int");
 
+                    b.Property<float>("CostPerNight")
+                        .HasColumnType("float");
+
                     b.Property<string>("DwellingName")
                         .IsRequired()
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
@@ -240,6 +243,9 @@ namespace PurrBnB.Migrations
                         .IsRequired()
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("datetime(6)");
+
                     b.Property<bool>("GroundLevelAccess")
                         .HasColumnType("tinyint(1)");
 
@@ -251,6 +257,9 @@ namespace PurrBnB.Migrations
 
                     b.Property<bool>("PrivateAccess")
                         .HasColumnType("tinyint(1)");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime(6)");
 
                     b.Property<string>("UserId")
                         .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
@@ -295,12 +304,14 @@ namespace PurrBnB.Migrations
                     b.Property<int>("ReservationId")
                         .HasColumnType("int");
 
+                    b.Property<float>("TotalCost")
+                        .HasColumnType("float");
+
                     b.HasKey("DwellingReservationId");
 
                     b.HasIndex("DwellingId");
 
-                    b.HasIndex("ReservationId")
-                        .IsUnique();
+                    b.HasIndex("ReservationId");
 
                     b.ToTable("DwellingReservations");
                 });
@@ -370,18 +381,17 @@ namespace PurrBnB.Migrations
                     b.Property<string>("ApplicationUserId")
                         .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
 
-                    b.Property<float>("CostPerNight")
+                    b.Property<int?>("DwellingId")
+                        .HasColumnType("int");
+
+                    b.Property<float>("TotalCost")
                         .HasColumnType("float");
-
-                    b.Property<DateTime>("EndDate")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<DateTime>("StartDate")
-                        .HasColumnType("datetime(6)");
 
                     b.HasKey("ReservationId");
 
                     b.HasIndex("ApplicationUserId");
+
+                    b.HasIndex("DwellingId");
 
                     b.ToTable("Reservations");
                 });
@@ -474,8 +484,8 @@ namespace PurrBnB.Migrations
                         .IsRequired();
 
                     b.HasOne("PurrBnB.Models.Reservation", "Reservation")
-                        .WithOne("DwellingReservation")
-                        .HasForeignKey("PurrBnB.Models.DwellingReservation", "ReservationId")
+                        .WithMany()
+                        .HasForeignKey("ReservationId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -499,7 +509,13 @@ namespace PurrBnB.Migrations
                         .WithMany()
                         .HasForeignKey("ApplicationUserId");
 
+                    b.HasOne("PurrBnB.Models.Dwelling", "Dwelling")
+                        .WithMany()
+                        .HasForeignKey("DwellingId");
+
                     b.Navigation("ApplicationUser");
+
+                    b.Navigation("Dwelling");
                 });
 
             modelBuilder.Entity("PurrBnB.Models.Dwelling", b =>
@@ -512,11 +528,6 @@ namespace PurrBnB.Migrations
             modelBuilder.Entity("PurrBnB.Models.Pet", b =>
                 {
                     b.Navigation("JoinEntities");
-                });
-
-            modelBuilder.Entity("PurrBnB.Models.Reservation", b =>
-                {
-                    b.Navigation("DwellingReservation");
                 });
 #pragma warning restore 612, 618
         }

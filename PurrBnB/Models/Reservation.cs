@@ -15,13 +15,11 @@ namespace PurrBnB.Models
 //Fri sat 
 // sun-th
     public int ReservationId { get; set; }
-    public DateTime StartDate { get; set; }
-    public DateTime EndDate { get; set; }
-    public float CostPerNight { get; set; }
+    public float TotalCost { get; set; }
 
     // public virtual ICollection<DwellingReservation> JoinDwellingReservation { get; set; }
 
-    public virtual DwellingReservation DwellingReservation {get; set; } 
+    public virtual Dwelling Dwelling {get; set; } 
     public virtual ApplicationUser ApplicationUser {get; set; } // rentee
   }
 }
