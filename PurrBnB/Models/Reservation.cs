@@ -16,6 +16,7 @@ namespace PurrBnB.Models
     public int ReservationId { get; set; }
     public string ReservationName { get; set; }
     public float TotalCost { get; set; }
+    public int DwellingId { get; set; }
 
     // public virtual ICollection<DwellingReservation> JoinDwellingReservation { get; set; }
 

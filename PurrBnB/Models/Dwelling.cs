@@ -8,9 +8,6 @@ namespace PurrBnB.Models
   {
     public Dwelling()
     {
-      //this.TotalCost = (JoinEntities.EndDate - JoinEntities.StartDate) * JoinEntities.CostPerNight;
-      // this.JoinEntities = new HashSet<DwellingPet>();
-      // this.JoinEntities2 = new HashSet<DwellingReservation>();
     }
 
       public int DwellingId { get; set ; }
@@ -20,6 +17,14 @@ namespace PurrBnB.Models
       public string DwellingOwnerName { get; set; }
       [Required]
       public string DwellingType { get; set;}
+      [Required]
+      public string DwellingStreetAddress { get; set;}
+      [Required]
+      public string DwellingCity { get; set;}
+      [Required]
+      public string DwellingState { get; set;}
+      [Required]
+      public int DwellingZip { get; set;}
       [Required]
       public int DwellingPetId { get; set; }
       public bool GroundLevelAccess { get; set;}
