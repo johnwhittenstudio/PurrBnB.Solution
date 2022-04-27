@@ -7,14 +7,14 @@
 
 @using (Html.BeginForm())
 {
-  @Html.LabelFor(model => model.ReservationId)
-  @Html.TextBoxFor(model => model.ReservationId)
+  @Html.LabelFor(model => model.ReservationName)
+  @Html.TextBoxFor(model => model.ReservationName)
   
   @Html.LabelFor(model => model.TotalCost)
   @Html.TextBoxFor(model => model.TotalCost)
 
-  @Html.Label("Add Reservation")
-  @Html.DropDownList("ReservationId", "Select Dwelling")
+  @Html.Label("Add Dwelling")
+  @Html.DropDownList("DwellingId", "Select Dwelling")
 
   <input type="submit" value="Save" />
 }

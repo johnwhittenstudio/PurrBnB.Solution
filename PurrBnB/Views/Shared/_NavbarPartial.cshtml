@@ -1,9 +1,11 @@
+@using System.Security.Claims
+
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container">
-    <a class="navbar-brand" href="#">
-      <img src="~/img/purrBnBLogo.svg" alt="" width="50" height="45" class="d-inline-block align-text-middle">
+    <a class="navbar-brand" href="/Pets">
+      <img src="~/img/purrBnBLogo.svg" alt="" width="35" height="32" class="d-inline-block align-text-middle">
     </a>
-    <h2>PurrBnB</h2>
+    <h2 class="brandName">PurrBnB</h2>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
       aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -27,6 +29,19 @@
         </li>
       </ul>
     </div>
-    <a class="nav-link btn btn-sm btn-primary" href='~/Account/Index'>Login</a>
+    @if (User.Identity.IsAuthenticated)
+    {
+      <span class="welcomeMessage">Hello @User.Identity.Name!  </span>
+      @using (Html.BeginForm("LogOff", "Account"))
+      {
+        <input type="submit" class="btn btn-outline-danger" value="Log out" />
+      }
+    }
+    else
+    {
+      <button class="btn btn-outline-primary" aria-current="page">
+        @Html.ActionLink("Log in", "Login")
+      </button>
+    }
   </div>
 </nav>

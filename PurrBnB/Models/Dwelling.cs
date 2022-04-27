@@ -8,6 +8,7 @@ namespace PurrBnB.Models
   {
     public Dwelling()
     {
+      //this.TotalCost = (JoinEntities.EndDate - JoinEntities.StartDate) * JoinEntities.CostPerNight;
       // this.JoinEntities = new HashSet<DwellingPet>();
       // this.JoinEntities2 = new HashSet<DwellingReservation>();
     }
@@ -37,7 +38,8 @@ namespace PurrBnB.Models
 
     public DateTime StartDate { get; set; }
     public DateTime EndDate { get; set; }
-    public float CostPerNight { get; set; }
+    public float TotalCost { get; set; }
+
 
 
       public virtual ApplicationUser User { get; set; }

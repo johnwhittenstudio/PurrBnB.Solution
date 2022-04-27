@@ -1,5 +1,106 @@
-@* @{
+@{
   Layout = "_Layout";
 }
 
-@model PurrBnB.Models.Reservation *@
+@model PurrBnB.Models.Reservation
+
+<div class=row>
+  <div class="col-md-12">
+  <h1 id="title" class="text-center">@Html.DisplayFor(model => model.ReservationName) Reservation Info</h1>
+  
+  <div class="row">
+    <div class="col align-self-center">
+      <button class="btn btn-outline-info">@Html.ActionLink("Edit Reservation", "Edit", new { id =Model.ReservationId }, new { @class = "btn btn-outline", id="button" })</button>
+      <button class="btn btn-outline-info">@Html.ActionLink("Delete Reservation", "Delete", new { id =Model.ReservationId }, new { @class = "btn btn-outline", id="button" })</button>
+    </div>
+  </div>
+
+  <table class="table table-bordered">
+    <thead>
+      <tr class="dwellingsDetails">
+        <th>Id</th>
+        <th>Name</th>
+        <th>Total Cost</th>
+        <th>Type</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>@Html.DisplayFor(model => model.ReservationId)</td>
+        <td>@Html.DisplayFor(model => model.ReservationName)</td>
+        <td>@Html.DisplayFor(model => model.TotalCost)</td>
+      </tr>
+    </tbody>
+  </table>
+      @if (@Model.JoinEntities.Count == 0)
+      {
+        <h3 class="text-center">This dwelling does not currently contain a dwelling</h3>
+      }
+      else
+      {
+        <table id="table" class="table" style="width: 100%">
+          <thead>
+            <tr>
+              <th>
+                &nbsp;
+              </th>
+              <th>
+                Pet
+              </th>
+              <th>
+                &nbsp;
+              </th>
+              <th>
+                &nbsp;
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            @foreach (var join in Model.JoinEntities)
+            {
+              <tr id="table" class="table">
+                <td width 10%>
+                  &nbsp;
+                </td>
+                <td width 40%>
+                  <h2>@join.DwellingName</h2>
+                </td>
+                <td width 10%>
+                  &nbsp;
+                </td>
+                <td width 10%>
+                  &nbsp;
+                </td>
+                <td width 40%>
+                </td>
+                <td width 40%>
+                  &nbsp;
+                </td>
+                <td width 40%>
+                  &nbsp;
+                </td>
+                <td width 40%>
+                  &nbsp;
+                </td>
+                <td width 40%>
+                  &nbsp;
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      }
+      &nbsp;
+      &nbsp;
+        &nbsp;
+        &nbsp;
+        <button id="button" type="button" class="btn btn-outline-info my-sm-0"
+          style="max-height: 5rem; max-width: 15rem;">@Html.ActionLink("Back to Reservations", "Index")</button>
+      </center>
+      &nbsp;
+      &nbsp;
+    </div>
+  </div>
+</div>
+</div>

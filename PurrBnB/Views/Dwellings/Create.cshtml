@@ -57,7 +57,7 @@
                 @Html.TextBoxFor(model => model.Accomodations, new { @required  = "required"})
                 <span> &nbsp; </span>
                 @Html.LabelFor(model => model.GroundLevelAccess)
-                @Html.CheckBoxFor(model => model.GroundLevelAccess, new { @required  = "required"})
+                @Html.CheckBoxFor(model => model.GroundLevelAccess)
                 <span> &nbsp; </span>
                 <span> &nbsp; </span>
                 @Html.LabelFor(model => model.Kitchen)
@@ -66,7 +66,18 @@
                 <span> &nbsp; </span>
                 @Html.LabelFor(model => model.PrivateAccess)
                 @Html.CheckBoxFor(model => model.PrivateAccess, new {@checked = "checked"})
-                <span> &nbsp; </span>                
+                <span> &nbsp; </span> 
+                @Html.LabelFor(model => model.StartDate)
+                <span> &nbsp; </span>
+                @Html.TextBoxFor(model => model.StartDate, new { @type = "date"})
+                <span> &nbsp; </span>
+                @Html.LabelFor(model => model.EndDate)
+                <span> &nbsp; </span>
+                @Html.TextBoxFor(model => model.EndDate, new { @type = "date"})
+                <span> &nbsp; </span>      
+                @Html.LabelFor(model => model.TotalCost)
+                <span> &nbsp; </span>
+                @Html.TextBoxFor(model => model.TotalCost, new { @format  = "{0:C0}"})   
 @*                @Html.Label("Select pet") *@
                 <span> &nbsp; </span>
   @*              @Html.DropDownList("PetId") *@

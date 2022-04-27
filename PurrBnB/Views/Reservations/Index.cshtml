@@ -30,7 +30,7 @@
         <center>
           @foreach (Reservation reservation in Model)
           {
-            <h3>@Html.ActionLink($"{reservation.ReservationId}", "Details", new { id = reservation.ReservationId })</h3>
+            <h3>@Html.ActionLink($"{reservation.ReservationName}", "Details", new { id = reservation.ReservationId })</h3>
           }
         </center>
         &nbsp;
