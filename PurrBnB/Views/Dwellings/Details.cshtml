@@ -1,3 +1,5 @@
+@using Microsoft.AspNetCore;
+
 @{
   Layout = "_Layout";
   ViewData["Title"] = "Dwelling Details";
@@ -9,113 +11,79 @@
   <div class="col-md-12">
     <div id="card" class="card border-dark">
       <div class="card-header">
-        <h1 id="title" class="text-center">@Html.DisplayFor(model => model.DwellingName) Accommodation Info</h1>  
+        <h1 id="title" class="text-center">@Html.DisplayFor(model => model.DwellingName) Accommodation Infos</h1>
       </div>
       <div class="card-body">
         <div class="row">
           <div class="col text-center">
-            <button class="btn btn-outline-info">@Html.ActionLink("Edit Dwelling", "Edit", new {id = Model.DwellingId}, new {@class = "btn btn-outline", id = "button"})</button>
-            <button class="btn btn-outline-info">@Html.ActionLink("Delete Dwelling", "Delete", new {id = Model.DwellingId}, new {@class = "btn btn-outline", id = "button"})</button>
+            <button>@Html.ActionLink("Edit Dwelling", "Edit", new {id = Model.DwellingId, @class = "btn btn-outline"})</button>
+            <button>@Html.ActionLink("Delete Dwelling", "Delete", new {id = Model.DwellingId, @class = "btn btn-outline"})</button>
           </div>
         </div>
         <div class="row">
           <table class="table table-bordered">
             <thead>
-            <tr class="dwellingsDetails">
-              <th>Id</th>
-              <th>Name</th>
-              <th>Owner</th>
-              <th>Type</th>
-              <th>Ground level access</th>
-              <th>Kitchen</th>
-              <th>Max Guests</th>
-              <th>Bedrooms</th>
-              <th>Baths</th>
-              <th>Private Access</th>
-              <th>Accomodations</th>
-            </tr>
+              <tr class="dwellingsDetails">
+                <th>Id</th>
+                <th>Name</th>
+                <th>Owner</th>
+                <th>Type</th>
+                <th>Ground level access</th>
+                <th>Kitchen</th>
+                <th>Max Guests</th>
+                <th>Bedrooms</th>
+                <th>Baths</th>
+                <th>Private Access</th>
+                <th>Accomodations</th>
+              </tr>
             </thead>
             <tbody>
-            <tr>
-              <td>@Html.DisplayFor(model => model.DwellingId)</td>
-              <td>@Html.DisplayFor(model => model.DwellingName)</td>
-              <td>@Html.DisplayFor(model => model.DwellingOwnerName)</td>
-              <td>@Html.DisplayFor(model => model.DwellingType)</td>
-              <td>@Html.DisplayFor(model => model.GroundLevelAccess)</td>
-              <td>@Html.DisplayFor(model => model.Kitchen)</td>
-              <td>@Html.DisplayFor(model => model.NumberOfPeopleAllowed)</td>
-              <td>@Html.DisplayFor(model => model.Bedrooms)</td>
-              <td>@Html.DisplayFor(model => model.Bathrooms)</td>
-              <td>@Html.DisplayFor(model => model.PrivateAccess)</td>
-              <td>@Html.DisplayFor(model => model.Accomodations)</td>
-            </tr>
+              <tr>
+                <td>@Html.DisplayFor(model => model.DwellingId)</td>
+                <td>@Html.DisplayFor(model => model.DwellingName)</td>
+                <td>@Html.DisplayFor(model => model.DwellingOwnerName)</td>
+                <td>@Html.DisplayFor(model => model.DwellingType)</td>
+                <td>@Html.DisplayFor(model => model.GroundLevelAccess)</td>
+                <td>@Html.DisplayFor(model => model.Kitchen)</td>
+                <td>@Html.DisplayFor(model => model.NumberOfPeopleAllowed)</td>
+                <td>@Html.DisplayFor(model => model.Bedrooms)</td>
+                <td>@Html.DisplayFor(model => model.Bathrooms)</td>
+                <td>@Html.DisplayFor(model => model.PrivateAccess)</td>
+                <td>@Html.DisplayFor(model => model.Accomodations)</td>
+              </tr>
             </tbody>
           </table>
         </div>
         <div class="row">
-          @if (@Model.JoinEntities.Count == 0){
-            <h3 class="text-center">This dwelling does not currently contain any pets!</h3>
+          @if (@Model.JoinEntities.Count == 0)
+          {
+            <h3 class="text-center">This dwelling does not currently contain any petssss!</h3>
           }
-          else{
-            <table id="table" class="table" style="width: 100%">
-              <thead>
-              <tr>
-                <th>
-                  &nbsp;
-                </th>
-                <th>
-                  Pet
-                </th>
-                <th>
-                  &nbsp;
-                </th>
-                <th>
-                  &nbsp;
-                </th>
-              </tr>
-              </thead>
-              <tbody>
-              @foreach (var join in Model.JoinEntities){
-                <tr id="table" class="table">
-                  <td width 10%>
-                    &nbsp;
-                  </td>
-                  <td width 40%>
-                    <h2>@join.Pet.Name</h2>
-                  </td>
-                  <td width 10%>
-                    &nbsp;
-                  </td>
-                  <td width 10%>
-                    &nbsp;
-                  </td>
-                  <td width 40%>
-                    @using (Html.BeginForm("DeletePet", "Dwellings")){
-                      @Html.Hidden("joinId", @join.DwellingPetId)
-                      <input type="submit" value="Remove Pet" id="button" class="btn btn-outline my-sm-0"/>
-                    }
-                  </td>
-                  <td width 40%>
-                    &nbsp;
-                  </td>
-                  <td width 40%>
-                    &nbsp;
-                  </td>
-                  <td width 40%>
-                    &nbsp;
-                  </td>
-                  <td width 40%>
-                    &nbsp;
-                  </td>
-                </tr>
+          else
+          {
+              @foreach (var join in Model.JoinEntities)
+              {
+                if (join.Pet != null)
+                {
+                  <h2>@Html.ActionLink(@join.Pet.Name, "Details", "Pets", new { id = join.PetId })</h2>
+                  @using (Html.BeginForm("DeletePet", "Dwellings"))
+                  {
+                    @Html.Hidden("joinId", @join.DwellingPetId)
+                    <input type="submit" value="Remove Pet" id="button" class="btn btn-outline-info" />
+                  }
+                }
+              
+              @* <!-- @Html.ActionLink(@join.Pet.Name, "Pets/Details", new { id = join.Pet.PetId }) -->
+              <!-- @Html.ActionLink(@join.DwellingPetId, "Details", new { id = join.Pet.PetId }) -->
+              <!-- $"{dwelling.DwellingName}" -->  *@
               }
-              </tbody>
-            </table>
-          }
-          <button class="btn btn-outline-info">@Html.ActionLink("Add a Pet", "AddPet", new{id = Model.DwellingId})</button>
+          }  
+          <button class="btn btn-outline-info">@Html.ActionLink("Add a Pet", "AddPet", new{id =
+            Model.DwellingId})</button>
+
           <button class="btn btn-outline-info">@Html.ActionLink("Back to listings", "Index")</button>
         </div>
       </div>
     </div>
   </div>
-                
+  </div>

@@ -1,6 +1,23 @@
-@* @{
+@{
   Layout = "_Layout";
-  ViewData["Title"] = "Add Dwelling;  
+  ViewData["Title"] = "Add Dwelling";  
 }
 
-@model PurrBnB.Models.Reservation *@
+@model PurrBnB.Models.Reservation
+
+<br>
+<h2>Add a reservation</h2>
+
+<h4>Add a reservation to this dwelling: @Html.DisplayFor(model => model.ReservationName)</h4>
+
+@using (Html.BeginForm())
+{
+  @Html.HiddenFor(model => model.ReservationId)
+
+  @Html.Label("Select Dwelling")
+  @Html.DropDownList("DwellingId")
+
+  <input type="submit" value="Save" />
+}
+
+<p>@Html.ActionLink("Back to list", "Index")</p>

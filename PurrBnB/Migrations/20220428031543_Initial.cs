@@ -162,6 +162,10 @@ namespace PurrBnB.Migrations
                     DwellingName = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: false),
                     DwellingOwnerName = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: false),
                     DwellingType = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: false),
+                    DwellingStreetAddress = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: false),
+                    DwellingCity = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: false),
+                    DwellingState = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: false),
+                    DwellingZip = table.Column<int>(type: "int", nullable: false),
                     DwellingPetId = table.Column<int>(type: "int", nullable: false),
                     GroundLevelAccess = table.Column<bool>(type: "tinyint(1)", nullable: false),
                     Kitchen = table.Column<bool>(type: "tinyint(1)", nullable: false),
@@ -172,7 +176,7 @@ namespace PurrBnB.Migrations
                     Accomodations = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: false),
                     StartDate = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     EndDate = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    CostPerNight = table.Column<float>(type: "float", nullable: false),
+                    TotalCost = table.Column<float>(type: "float", nullable: false),
                     UserId = table.Column<string>(type: "varchar(255) CHARACTER SET utf8mb4", nullable: true)
                 },
                 constraints: table =>
@@ -219,8 +223,9 @@ namespace PurrBnB.Migrations
                 {
                     ReservationId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    ReservationName = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: true),
                     TotalCost = table.Column<float>(type: "float", nullable: false),
-                    DwellingId = table.Column<int>(type: "int", nullable: true),
+                    DwellingId = table.Column<int>(type: "int", nullable: false),
                     ApplicationUserId = table.Column<string>(type: "varchar(255) CHARACTER SET utf8mb4", nullable: true)
                 },
                 constraints: table =>
@@ -231,12 +236,6 @@ namespace PurrBnB.Migrations
                         column: x => x.ApplicationUserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Reservations_Dwellings_DwellingId",
-                        column: x => x.DwellingId,
-                        principalTable: "Dwellings",
-                        principalColumn: "DwellingId",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -364,11 +363,6 @@ namespace PurrBnB.Migrations
                 name: "IX_Reservations_ApplicationUserId",
                 table: "Reservations",
                 column: "ApplicationUserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Reservations_DwellingId",
-                table: "Reservations",
-                column: "DwellingId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -401,10 +395,10 @@ namespace PurrBnB.Migrations
                 name: "Pets");
 
             migrationBuilder.DropTable(
-                name: "Reservations");
+                name: "Dwellings");
 
             migrationBuilder.DropTable(
-                name: "Dwellings");
+                name: "Reservations");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");

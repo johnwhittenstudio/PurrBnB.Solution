@@ -9,8 +9,8 @@ using PurrBnB.Models;
 namespace PurrBnB.Migrations
 {
     [DbContext(typeof(PurrBnBContext))]
-    [Migration("20220427025418_TripName")]
-    partial class TripName
+    [Migration("20220428031543_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -227,8 +227,9 @@ namespace PurrBnB.Migrations
                     b.Property<int>("Bedrooms")
                         .HasColumnType("int");
 
-                    b.Property<float>("CostPerNight")
-                        .HasColumnType("float");
+                    b.Property<string>("DwellingCity")
+                        .IsRequired()
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("DwellingName")
                         .IsRequired()
@@ -241,9 +242,20 @@ namespace PurrBnB.Migrations
                     b.Property<int>("DwellingPetId")
                         .HasColumnType("int");
 
+                    b.Property<string>("DwellingState")
+                        .IsRequired()
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("DwellingStreetAddress")
+                        .IsRequired()
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
                     b.Property<string>("DwellingType")
                         .IsRequired()
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<int>("DwellingZip")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime(6)");
@@ -260,18 +272,16 @@ namespace PurrBnB.Migrations
                     b.Property<bool>("PrivateAccess")
                         .HasColumnType("tinyint(1)");
 
-                    b.Property<int?>("ReservationId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime(6)");
+
+                    b.Property<float>("TotalCost")
+                        .HasColumnType("float");
 
                     b.Property<string>("UserId")
                         .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
 
                     b.HasKey("DwellingId");
-
-                    b.HasIndex("ReservationId");
 
                     b.HasIndex("UserId");
 
@@ -388,6 +398,9 @@ namespace PurrBnB.Migrations
                     b.Property<string>("ApplicationUserId")
                         .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
 
+                    b.Property<int>("DwellingId")
+                        .HasColumnType("int");
+
                     b.Property<string>("ReservationName")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
@@ -454,10 +467,6 @@ namespace PurrBnB.Migrations
 
             modelBuilder.Entity("PurrBnB.Models.Dwelling", b =>
                 {
-                    b.HasOne("PurrBnB.Models.Reservation", null)
-                        .WithMany("JoinEntities")
-                        .HasForeignKey("ReservationId");
-
                     b.HasOne("PurrBnB.Models.ApplicationUser", "User")
                         .WithMany()
                         .HasForeignKey("UserId");
@@ -493,7 +502,7 @@ namespace PurrBnB.Migrations
                         .IsRequired();
 
                     b.HasOne("PurrBnB.Models.Reservation", "Reservation")
-                        .WithMany()
+                        .WithMany("JoinEntities2")
                         .HasForeignKey("ReservationId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -535,7 +544,7 @@ namespace PurrBnB.Migrations
 
             modelBuilder.Entity("PurrBnB.Models.Reservation", b =>
                 {
-                    b.Navigation("JoinEntities");
+                    b.Navigation("JoinEntities2");
                 });
 #pragma warning restore 612, 618
         }

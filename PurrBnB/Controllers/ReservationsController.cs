@@ -11,9 +11,9 @@ using System;
 using PurrBnB.Models;
 
 
-namespace  PurrBnB.Controllers
+namespace PurrBnB.Controllers
 {
-  public class ReservationsController: Controller
+  public class ReservationsController : Controller
   {
     private readonly PurrBnBContext _db;
     private readonly UserManager<ApplicationUser> _userManager;
@@ -57,10 +57,10 @@ namespace  PurrBnB.Controllers
 
     public ActionResult Details(int id)
     {
-      var thisReservation= _db.Reservations.FirstOrDefault(reservation => reservation.ReservationId == id);
-      // .Include(reservation => reservation.JoinEntities)
-      // .ThenInclude(join => join.Dwelling)
-      // .FirstOrDefault(dwelling => dwelling.DwellingId == id);
+      var thisReservation = _db.Reservations
+        .Include(reservation => reservation.JoinEntities2)
+        .ThenInclude(join => join.Dwelling)
+        .FirstOrDefault(dwelling => dwelling.DwellingId == id);
       //ViewBag.Dwellings = _db.Dwellings.Where(entry = entry.DwellingId))
       return View(thisReservation);
     }
@@ -75,6 +75,10 @@ namespace  PurrBnB.Controllers
     [HttpPost]
     public ActionResult Edit(Reservation reservation, int DwellingId)
     {
+      if (DwellingId != 0)
+      {
+        _db.DwellingReservations.Add(new DwellingReservation() { DwellingId = DwellingId, ReservationId = reservation.ReservationId });
+      }
       _db.Entry(reservation).State = EntityState.Modified;
       _db.SaveChanges();
       return RedirectToAction("Index");

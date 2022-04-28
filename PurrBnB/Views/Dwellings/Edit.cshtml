@@ -82,17 +82,17 @@
           @Html.TextBoxFor(model => model.Accomodations, new { @required  = "required"})
           <span> &nbsp; </span>
           <span> &nbsp; </span>  
-          @Html.LabelFor(model => model.StartDate)
+          @* <!-- @Html.LabelFor(model => model.StartDate)
           <span> &nbsp; </span>
           @Html.TextBoxFor(model => model.StartDate, new { @type = "date"})
           <span> &nbsp; </span>
           @Html.LabelFor(model => model.EndDate)
           <span> &nbsp; </span>
-          @Html.TextBoxFor(model => model.EndDate, new { @type = "date"})
+          @Html.TextBoxFor(model => model.EndDate, new { @type = "date"}) --> *@
           <span> &nbsp; </span>      
-          @Html.LabelFor(model => model.TotalCost)
+          @Html.LabelFor(model => model.CostPerNight)
           <span> &nbsp; </span>
-          @Html.TextBoxFor(model => model.TotalCost, new { @format  = "{0:C0}"})                 
+          @Html.TextBoxFor(model => model.CostPerNight, new { @format  = "{0:C0}"})                 
           @Html.Label("Select pet")
           <span> &nbsp; </span>
           @Html.DropDownList("PetId")
