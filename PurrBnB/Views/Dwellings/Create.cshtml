@@ -1,97 +1,99 @@
 @{
   Layout = "_Layout";
+  ViewData["Title"] = "Add Dwelling";
 }
 
+@using Microsoft.AspNetCore.Mvc.Rendering
+@using Microsoft.AspNetCore.Mvc.TagHelpers
 @model PurrBnB.Models.Dwelling
-<div class="container">
-  <br>
-  <br>
-  <div class="col-md-12">
-    <div class=row>
-      &nbsp;
-      &nbsp;
-      &nbsp;
-      &nbsp;
-      <div id="card" class="card border-dark mb-3" style="position: center; width: 100%; height: 50%">
-            <div class="card-header">
-              <center>
-              <h1 id="title">List a new dwelling</h1>
-              </center>
-            </div>
-            &nbsp;  
-            @using (Html.BeginForm())
-            {
-              <center>
-                @Html.LabelFor(model => model.DwellingName)
-                <span> &nbsp; </span>
-                @Html.TextBoxFor(model => model.DwellingName, new { @required  = "required"})
-                <span> &nbsp; </span>
-                <span> &nbsp; </span>
-                @Html.LabelFor(model => model.DwellingOwnerName)
-                <span> &nbsp; </span>
-                @Html.TextBoxFor(model => model.DwellingOwnerName, new { @required  = "required"})
-                <span> &nbsp; </span>
-                <span> &nbsp; </span>
-                @Html.LabelFor(model => model.DwellingType)
-                <span> &nbsp; </span>
-                @Html.TextBoxFor(model => model.DwellingType, new { @required  = "required"})
-                <span> &nbsp; </span>
-                <span> &nbsp; </span>
-                @Html.LabelFor(model => model.NumberOfPeopleAllowed)
-                <span> &nbsp; </span>
-                @Html.TextBoxFor(model => model.NumberOfPeopleAllowed, new { @required  = "required"})
-                <span> &nbsp; </span>
-                <span> &nbsp; </span> 
-                @Html.LabelFor(model => model.Bedrooms)
-                <span> &nbsp; </span>
-                @Html.TextBoxFor(model => model.Bedrooms, new { @required  = "required"})
-                <span> &nbsp; </span>
-                <span> &nbsp; </span> 
-                @Html.LabelFor(model => model.Bathrooms)
-                <span> &nbsp; </span>
-                @Html.TextBoxFor(model => model.Bathrooms, new { @required  = "required"})
-                <span> &nbsp; </span>
-                <span> &nbsp; </span> 
-                @Html.LabelFor(model => model.Accomodations)
-                <span> &nbsp; </span>
-                @Html.TextBoxFor(model => model.Accomodations, new { @required  = "required"})
-                <span> &nbsp; </span>
-                @Html.LabelFor(model => model.GroundLevelAccess)
-                @Html.CheckBoxFor(model => model.GroundLevelAccess)
-                <span> &nbsp; </span>
-                <span> &nbsp; </span>
-                @Html.LabelFor(model => model.Kitchen)
-                @Html.CheckBoxFor(model => model.Kitchen, new {@checked = "checked"})
-                <span> &nbsp; </span>
-                <span> &nbsp; </span>
-                @Html.LabelFor(model => model.PrivateAccess)
-                @Html.CheckBoxFor(model => model.PrivateAccess, new {@checked = "checked"})
-                <span> &nbsp; </span> 
-                @Html.LabelFor(model => model.StartDate)
-                <span> &nbsp; </span>
-                @Html.TextBoxFor(model => model.StartDate, new { @type = "date"})
-                <span> &nbsp; </span>
-                @Html.LabelFor(model => model.EndDate)
-                <span> &nbsp; </span>
-                @Html.TextBoxFor(model => model.EndDate, new { @type = "date"})
-                <span> &nbsp; </span>      
-                @Html.LabelFor(model => model.TotalCost)
-                <span> &nbsp; </span>
-                @Html.TextBoxFor(model => model.TotalCost, new { @format  = "{0:C0}"})   
-@*                @Html.Label("Select pet") *@
-                <span> &nbsp; </span>
-  @*              @Html.DropDownList("PetId") *@
-                </center>
-                <span> &nbsp; </span>
-                <span> &nbsp; </span>
-                <center><input id="button" class="btn btn-outline-dark my-sm-0" type="submit" value="Add new dwelling" class="btn btn-default" /></center>
 
-            }
-            &nbsp;
-            <center><button id="button" type="button" class="btn btn-outline-dark my-sm-0" style="max-height: 5rem; max-width: 15rem;">@Html.ActionLink("List of Dwellings", "Index")</button></center>
-            &nbsp;
-            &nbsp;
+<div class="row">
+  <div class="col-md-12">
+    <div id="card" class="card border-dark mb-3">
+      <div class="card-header">
+        <h1 id="title">List a new dwelling</h1>
+      </div>
+      <div class="card-body">
+        @using (Html.BeginForm()){
+          <form>
+            <div class="mb-3">
+              @Html.LabelFor(model => model.DwellingName, new {@class = "form-label"})
+              @Html.TextBoxFor(model => model.DwellingName, new {@required = "required", @class = "form-control"})
+            </div>
+            <div class="mb-3">
+              @Html.LabelFor(model => model.DwellingOwnerName, new {@class = "form-label"})
+              @Html.TextBoxFor(model => model.DwellingOwnerName, new {@required = "required", @class = "form-control"})
+            </div>
+            <div class="mb-3">
+              @Html.LabelFor(model => model.DwellingType, new {@class = "form-label"})
+              @Html.TextBoxFor(model => model.DwellingType, new {@required = "required", @class = "form-control"})
+            </div>
+            <div class="mb-3">
+              @Html.LabelFor(model => model.DwellingStreetAddress, new {@class = "form-label"})
+              @Html.TextBoxFor(model => model.DwellingStreetAddress, new {@required = "required", @class = "form-control"})
+            </div>
+            <div class="mb-3">
+              @Html.LabelFor(model => model.DwellingCity, new {@class = "form-label"})
+              @Html.TextBoxFor(model => model.DwellingCity, new {@required = "required", @class = "form-control"})
+            </div>
+            <div class="mb-3">
+              @Html.LabelFor(model => model.DwellingState, new {@class = "form-label"})
+              @Html.TextBoxFor(model => model.DwellingState, new {@required = "required", @class = "form-control"})
+            </div>
+            <div class="mb-3">
+              @Html.LabelFor(model => model.DwellingZip, new {@class = "form-label"})
+              @Html.TextBoxFor(model => model.DwellingZip, new {@required = "required", @class = "form-control"})
+            </div>
+            <div class="mb-3">
+              @Html.LabelFor(model => model.NumberOfPeopleAllowed, new {@class = "form-label"})
+              @Html.TextBoxFor(model => model.NumberOfPeopleAllowed, new {@required = "required", @class = "form-control"})
+            </div>
+            <div class="mb-3">
+              @Html.LabelFor(model => model.Bedrooms, new {@class = "form-label"})
+              @Html.TextBoxFor(model => model.Bedrooms, new {@required = "required", @class = "form-control"})
+            </div>
+            <div class="mb-3">
+              @Html.LabelFor(model => model.Bathrooms, new {@class = "form-label"})
+              @Html.TextBoxFor(model => model.Bathrooms, new {@required = "required", @class = "form-control"})
+            </div>
+            <div class="mb-3">
+              @Html.LabelFor(model => model.Accomodations, new {@class = "form-label"})
+              @Html.TextBoxFor(model => model.Accomodations, new {@required = "required", @class = "form-control"})
+            </div>
+            <div class="mb-3 form-check">
+              @Html.CheckBoxFor(model => model.GroundLevelAccess, new {@required = "required", @class = "form-check-input"})
+              @Html.LabelFor(model => model.GroundLevelAccess, new {@class = "form-check-label"})
+            </div>
+            <div class="mb-3 form-check">
+              @Html.CheckBoxFor(model => model.Kitchen, new {@required = "required", @class = "form-check-input"})
+              @Html.LabelFor(model => model.Kitchen, new {@class = "form-check-label"})
+            </div>
+            <div class="mb-3 form-check">
+              @Html.CheckBoxFor(model => model.PrivateAccess, new {@required = "required", @class = "form-check-input"})
+              @Html.LabelFor(model => model.PrivateAccess,new {@class = "form-check-label"})
+            </div>
+            <div class="mb-3">
+              @Html.LabelFor(model => model.StartDate,new {@class = "form-label"})
+              @Html.TextBoxFor(model => model.StartDate, new {@type = "date", @class = "form-control"})
+            </div>
+            <div class="mb-3">
+              @Html.LabelFor(model => model.EndDate, new {@class = "form-label"})
+              @Html.TextBoxFor(model => model.EndDate, new {@type = "date", @class = "form-control"})
+            </div>
+            <div class="mb-3">
+              @Html.LabelFor(model => model.TotalCost, new {@class = "form-label"})
+              @Html.TextBoxFor(model => model.TotalCost, new {@format = "{ 0:C0}", @required = "required", @class = "form-control"})
+            </div>
+            @*   <div class="mb-3"> *@
+            @*     @Html.Label("Select pet") *@
+            @*     @Html.DropDownList("PetId") *@
+            @* </div> *@
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        }
       </div>
     </div>
+      <input class="btn btn-outline-dark" type="submit" value="Add new dwelling" />
+      <button class="btn btn-outline-dark">@Html.ActionLink("List of Dwellings", "Index")</button>
   </div>
 </div>

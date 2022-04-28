@@ -122,11 +122,11 @@
                         &nbsp;
                     </td>
                     <td width 40%>
-                      @using (Html.BeginForm("DeleteDwelling", "Pets"))
-                      {
-                        @* @Html.Hidden("joinId", @join.DwellingPetId) *@
-                        <input type="submit" value="Remove Dwelling" id="button" class="btn btn-outline my-sm-0" />
-                      }
+                      @* @using (Html.BeginForm("DeleteDwelling", "Pets")) *@
+                      @* { *@
+                      @*   $1$ @Html.Hidden("joinId", @join.DwellingPetId) #1# *@
+                      @*   <input type="submit" value="Remove Dwelling" id="button" class="btn btn-outline my-sm-0" /> *@
+                      @* } *@
                     </td>
                     <td width 40%>
                       &nbsp;
@@ -147,7 +147,7 @@
               }
             &nbsp;
             &nbsp;
-            <center><button id="button" type="button" class="btn btn-outline my-sm-0" style="max-height: 5rem; max-width: 15rem;">@Html.ActionLink("Add a Dwelling", "AddDwelling", new { id = Model.PetId })</button>
+            @* <center><button id="button" type="button" class="btn btn-outline my-sm-0" style="max-height: 5rem; max-width: 15rem;">@Html.ActionLink("Add a Dwelling", "AddDwelling", new { id = Model.PetId })</button> *@
             &nbsp;
             &nbsp;
             <button id="button" type="button" class="btn btn-outline my-sm-0" style="max-height: 5rem; max-width: 15rem;">@Html.ActionLink("Back to listings", "Index")</button></center>
