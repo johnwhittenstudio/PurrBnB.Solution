@@ -46,10 +46,11 @@ namespace PurrBnB.Controllers
 
       _db.Reservations.Add(reservation);
       _db.SaveChanges();
+      float dwellingCost = _db.Dwellings.FirstOrDefault(dwelling => dwelling.DwellingId == DwellingId).CostPerNight;
 
         if (DwellingId != 0)
         {
-          _db.DwellingReservations.Add(new DwellingReservation() { DwellingId = DwellingId, ReservationId = reservation.ReservationId});
+          _db.DwellingReservations.Add(new DwellingReservation() { DwellingId = DwellingId, ReservationId = reservation.ReservationId, CostPerNight = dwellingCost});
           _db.SaveChanges();
         }
       return RedirectToAction("Index");
