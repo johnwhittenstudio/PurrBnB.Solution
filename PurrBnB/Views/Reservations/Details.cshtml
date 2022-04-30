@@ -5,7 +5,7 @@
 
 @model PurrBnB.Models.Reservation
 
-<div class=row>
+<div class="row">
   <div class="col-md-12">
   <h1 id="title" class="text-center">@Html.DisplayFor(model => model.ReservationName) Reservation Info</h1>
   
@@ -23,7 +23,6 @@
         <th>Name</th>
         <th>Total Cost</th>   
         <th>Type</th>
-
       </tr>
     </thead>
     <tbody>
@@ -34,26 +33,26 @@
       </tr>
     </tbody>
   </table>
-  <div class="row">
+    <div class="row">
       @if (@Model.JoinEntities2.Count == 0)
       {
         <h3 class="text-center">This reservation does not currently contain a dwelling</h3>
       }
       else
       {
-          @foreach(var join in Model.JoinEntities2)
+        @foreach(var join in Model.JoinEntities2)
+        {
+          if (join.Dwelling != null)
           {
-            if (join.Dwelling != null)
+            <h2>@Html.ActionLink(@join.Dwelling.DwellingName, "Details", "Dwelling", new { id = join.DwellingId}) </h2>  
+            @using (Html.BeginForm("DeleteDwelling", "Reservations"))
             {
-              <h2>@Html.ActionLink(@join.Dwelling.DwellingName, "Details", "Dwelling", new { id = join.DwellingId}) </h2>  
-              @using (Html.BeginForm("DeleteDwelling", "Reservations"))
-              {
-                @Html.Hidden("joinId", @join.DwellingReservationId)
-                <input type="submit" value="Remove Dwelling" id="button" class="btn btn-outline-info" />                
-              }
+              @Html.Hidden("joinId", @join.DwellingReservationId)
+              <input type="submit" value="Remove Dwelling" id="button" class="btn btn-outline-info" />                
             }
- 
           }
+ 
+        }
         @* <table id="table" class="table" style="width: 100%">
           <thead>
             <tr>
@@ -102,18 +101,12 @@
                   &nbsp;
                 </td>
               </tr> *@
-            }
-          @* </tbody>
+      }
+      @* </tbody>
         </table> *@
       }
       &nbsp;
-      &nbsp;
-        &nbsp;
-        &nbsp;
-        <button id="button" type="button" class="btn btn-outline-info my-sm-0"
-          style="max-height: 5rem; max-width: 15rem;">@Html.ActionLink("Back to Reservations", "Index")</button>
-      </center>
-      &nbsp;
-      &nbsp;
+      <button class="btn btn-outline">@Html.ActionLink("Back to Reservations", "Index")</button>
     </div>
+  </div>
   </div>

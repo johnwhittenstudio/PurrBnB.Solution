@@ -5,50 +5,35 @@
 
 @using PurrBnB.Models;
 @model IEnumerable<PurrBnB.Models.Pet>
-<div class="container">
-  <br>
-  <br>
-  <div class="col-md-12">
-    <div class=row>
-      &nbsp;
-      &nbsp;
-      &nbsp;
-      &nbsp;
-      <div id="card" class="card border-dark mb-3" style="position: center; width: 100%; height: 50%">
-        <div class="card-header">
-          <center><strong>
-              <h1 id="title" style="font-size:4vw">Pets</h1>
-            </strong></center>
-        </div>
-        &nbsp;
-        @if (@Model.Count() == 0)
-        {
-          <center>
-            <h3>No pets have been added yet!</h3>
-          </center>
-        }
 
-        <center>
-          @foreach (Pet pet in Model)
-          {
-            <h3>@Html.ActionLink($"{pet.Name}", "Details", new { id = pet.PetId })</h3>
-          }
-        </center>
-        &nbsp;
-        &nbsp;
-        <center><button id="button" type="button" class="btn btn-outline-dark my-sm-0"
-            style="max-height: 5rem; max-width: 15rem;">@Html.ActionLink("Add new pet", "Create")</button>
-          &nbsp;
-          <button id="button" type="button" class="btn btn-outline-dark my-sm-0"
-            style="max-height: 5rem; max-width: 15rem;">@Html.ActionLink("Home", "Index", "Home")</button>
-        </center>
-        &nbsp;
-        &nbsp;
-        &nbsp;
-        &nbsp;
-        &nbsp;
-        &nbsp;
+<div class="row">
+  <div class="col-md-12">
+    
+    <div class="card">
+      <div class="card-header">
+        <h1 class="text-center">Pets</h1>
+      </div>
+      <div class="card-body">
+        @if (@Model.Count() == 0){
+          <h3>No pets have been added yet!</h3>
+        }
+        @foreach (Pet pet in Model){
+          <h3>@Html.ActionLink($"{pet.Name}", "Details", new {id = pet.PetId})</h3>
+        }
       </div>
     </div>
+    
+    <button class="btn btn-outline">
+      @Html.ActionLink("Add new pet", "Create")
+    </button>
+
+    <button class="btn btn-outline">
+      @Html.ActionLink("Home", "Index", "Home")
+    </button>
+    
   </div>
 </div>
+
+
+
+
