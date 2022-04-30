@@ -61,7 +61,7 @@ namespace PurrBnB.Controllers
       var thisReservation = _db.Reservations
         .Include(reservation => reservation.JoinEntities2)
         .ThenInclude(join => join.Dwelling)
-        .FirstOrDefault(dwelling => dwelling.DwellingId == id);
+        .FirstOrDefault(reservation => reservation.ReservationId == id);
       //ViewBag.Dwellings = _db.Dwellings.Where(entry = entry.DwellingId))
       return View(thisReservation);
     }
