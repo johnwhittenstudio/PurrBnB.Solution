@@ -22,7 +22,7 @@
         <th>Id</th>
         <th>Name</th>
         <th>Total Nights</th>   
-        <th>Type</th>
+        <th>Total Cost</th>
       </tr>
     </thead>
     <tbody>
@@ -30,6 +30,11 @@
         <td>@Html.DisplayFor(model => model.ReservationId)</td>
         <td>@Html.DisplayFor(model => model.ReservationName)</td>
         <td>@Html.DisplayFor(model => model.TotalNights)</td>
+        @foreach(var joinDwelling in Model.JoinEntities2)
+        {
+          <td>@((@Model.TotalNights * @joinDwelling.CostPerNight).ToString("c"))</td>
+        }
+        
       </tr>
     </tbody>
   </table>
@@ -104,7 +109,7 @@
       }
       @* </tbody>
         </table> *@
-      }
+      
       &nbsp;
       <button class="btn btn-outline">@Html.ActionLink("Back to Reservations", "Index")</button>
     </div>
