@@ -45,7 +45,7 @@ namespace PurrBnB.Controllers
     {
       var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
       var currentUser = await _userManager.FindByIdAsync(userId);
-
+      dwelling.User = currentUser;
       _db.Dwellings.Add(dwelling);
       _db.SaveChanges();
 
