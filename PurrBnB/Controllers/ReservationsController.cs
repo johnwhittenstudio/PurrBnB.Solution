@@ -90,5 +90,14 @@ namespace PurrBnB.Controllers
       var thisReservation = _db.Reservations.FirstOrDefault(reservation => reservation.ReservationId == id);
       return View(thisReservation);
     }
+
+    [HttpPost, ActionName("Delete")]
+    public ActionResult DeleteConfirmed(int id)
+    {
+      var thisReservation = _db.Reservations.FirstOrDefault(reservation => reservation.ReservationId == id);
+      _db.Reservations.Remove(thisReservation);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
   }
 }
