@@ -15,29 +15,54 @@
       <div class="card-body">
         @using (Html.BeginForm())
         {
-          @Html.LabelFor(model => model.Name)
-          @Html.TextBoxFor(model => model.Name, new {@required = "required"})
-          @Html.LabelFor(model => model.Age)
-          @Html.TextBoxFor(model => model.Age, new {@required = "required"})
-          @Html.LabelFor(model => model.Color)
-          @Html.TextBoxFor(model => model.Color, new {@required = "required"})
-          @Html.LabelFor(model => model.Interests)
-          @Html.TextBoxFor(model => model.Interests, new {@required = "required"})
-          @Html.LabelFor(model => model.FavoriteToys)
-          @Html.TextBoxFor(model => model.FavoriteToys, new {@required = "required"})
-          @Html.LabelFor(model => model.Schedule)
-          @Html.TextBoxFor(model => model.Schedule, new {@required = "required"})
-          @Html.LabelFor(model => model.Personality)
-          @Html.TextBoxFor(model => model.Personality, new {@required = "required"})
-          @Html.LabelFor(model => model.Species)
-          @Html.TextBoxFor(model => model.Species, new {@required = "required"})
-          <input class="btn btn-outline-primary" type="submit" value="Add new pet"/>
+          <div class="row">
+            <div class="col-md-3">
+              @Html.LabelFor(model => model.Name, new {@class = "form-label"})
+              @Html.TextBoxFor(model => model.Name, new {@required = "required", @class = "form-control"})
+            </div>
+            <div class="col-md-3">
+              @Html.LabelFor(model => model.Species, new {@class = "form-label"})
+              @Html.TextBoxFor(model => model.Species, new {@required = "required", @class = "form-control"})
+            </div>
+            <div class="col-md-3">
+              @Html.LabelFor(model => model.Age, new {@class = "form-label"})
+              @Html.TextBoxFor(model => model.Age, new {@required = "required", @class = "form-control"})
+            </div>
+            <div class="col-md-3">
+              @Html.LabelFor(model => model.Color, new {@class = "form-label"})
+              @Html.TextBoxFor(model => model.Color, new {@required = "required", @class = "form-control"})
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-md-3">              
+              @Html.LabelFor(model => model.Personality, new {@class = "form-label"})
+              @Html.TextBoxFor(model => model.Personality, new {@required = "required", @class = "form-control"})
+            </div>
+            <div class="col-md-3">
+              @Html.LabelFor(model => model.Interests, new {@class = "form-label"})
+              @Html.TextBoxFor(model => model.Interests, new {@required = "required", @class = "form-control"})
+            </div>
+            <div class="col-md-3">
+              @Html.LabelFor(model => model.FavoriteToys, new {@class = "form-label"})
+              @Html.TextBoxFor(model => model.FavoriteToys, new {@required = "required", @class = "form-control"})
+            </div>
+            <div class="col-md-3">
+              @Html.LabelFor(model => model.Schedule, new {@class = "form-label"})
+              @Html.TextBoxFor(model => model.Schedule, new {@required = "required", @class = "form-control"})
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-12">
+              <button class="btn btn-outline-success" type="submit" value="Add new pet">Add New Pet</button> <span>&nbsp;</span>
+              <button class="btn btn-outline-primary">@Html.ActionLink("List of Pets", "Index")</button>
+            </div>
+          </div>
         }
-        
       </div>
     </div>
-    
   </div>
 </div>
 
-<button class="btn btn-outline">@Html.ActionLink("List of Pets", "Index")</button>
+

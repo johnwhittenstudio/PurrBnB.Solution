@@ -136,4 +136,10 @@ margin: 0 20px
   display: flex;
   flex-direction: column;
   float: left;
+  flex-wrap: wrap;
+}
+
+img {
+  float: left;
+  margin-right: 1px;
 }

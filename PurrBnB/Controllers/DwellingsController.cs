@@ -1,13 +1,19 @@
-using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
-using System.Threading.Tasks;
-using System.Security.Claims;
 using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Security.Claims;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
+using Microsoft.Extensions.Hosting;
+
 using PurrBnB.Models;
 
 namespace PurrBnB.Controllers
@@ -16,10 +22,14 @@ namespace PurrBnB.Controllers
   {
     private readonly PurrBnBContext _db;
     private readonly UserManager<ApplicationUser> _userManager;
-    public DwellingsController(UserManager<ApplicationUser> UserManager, PurrBnBContext db)
+    private readonly IFileProvider fileProvider;
+    private readonly IHostEnvironment webHostingEnvironment;
+    public DwellingsController(UserManager<ApplicationUser> UserManager, PurrBnBContext db, IFileProvider fileprovider, IHostEnvironment env)
     {
       _userManager = UserManager;
       _db = db;
+      fileProvider = fileprovider;
+      webHostingEnvironment = env;
     }
 
 
@@ -41,13 +51,32 @@ namespace PurrBnB.Controllers
     }
 
     [HttpPost]
-    public async Task<ActionResult> Create(Dwelling dwelling, int PetId)
+    public async Task<ActionResult> Create(Dwelling dwelling, int PetId, IFormFile file)
     {
       var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
       var currentUser = await _userManager.FindByIdAsync(userId);
       dwelling.User = currentUser;
       _db.Dwellings.Add(dwelling);
       _db.SaveChanges();
+
+      if (file != null || file.Length != 0)
+      {
+        FileInfo fi = new FileInfo(file.FileName);
+        var newFilename = dwelling.DwellingId + "_" + String.Format("{0:d}", (DateTime.Now.Ticks / 10) % 100000000) + fi.Extension;
+        var webPath = webHostingEnvironment.WebRootPath;
+        var path = Path.Combine("" , webPath + @"\img\" + newFilename);
+        var pathToSave = @"/img/" + newFilename;
+        using (var stream = new FileStream(path, FileMode.Create))
+        {
+            await file.CopyToAsync(stream);
+        }
+        dwelling.ImagePath = pathToSave;
+        _db.Update(dwelling);
+        await _db.SaveChangesAsync();
+        {
+          return RedirectToAction(nameof(Index));
+        }
+      }
 
       if (PetId != 0)
       {
