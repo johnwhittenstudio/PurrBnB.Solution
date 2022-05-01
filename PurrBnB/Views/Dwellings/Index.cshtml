@@ -13,19 +13,48 @@
         <h1 class="text-center">List of available dwellings</h1>
       </div>
       <div class="card-body">
-        @if (Model.Any())
+      
+
+        <div class="flex-container">
+          @if (Model.Any())
           {
+
             @foreach (Dwelling dwelling in Model)
             {
-              <h3 class="text-center">
-                @Html.ActionLink($"{dwelling.DwellingName}", "Details", new { id = dwelling.DwellingId, @class = "text-center" })
-              </h3>
+              <div class="col-md-5">
+                <div id="card" class="card border-primary">
+                  <div class="card-header">
+                    <div>
+                      <center>
+                        <h2>@Html.ActionLink($"{dwelling.DwellingName}", "Details", new { id = dwelling.DwellingId})</h2>
+                      </center>
+                    </div>
+                    <div class="card-body text-primary">
+                      <h5>@Html.DisplayFor(model => dwelling.DwellingCity), @Html.DisplayFor(model =>
+                    dwelling.DwellingState)</h5>
+                      <h6>$@Html.DisplayFor(model => dwelling.CostPerNight) daily rate</h6>
+                      <h6>Owned by: @Html.DisplayFor(model => dwelling.DwellingOwnerName)</h6>
+                    </div>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                      <div class="card-footer">
+                        <center><h6>@Html.ActionLink("Edit Dwelling", "Edit", new {id =
+                      dwelling.DwellingId, @class = "btn btn-outline-dark"}) &nbsp;
+                        @Html.ActionLink("Delete Dwelling", "Delete", new {id =
+                      dwelling.DwellingId, @class = "btn btn-outline-dark"})</h6></center>
+                      </div>
+                    }
+                  </div>
+                </div>
+              </div>
             }
-          } 
+          }
           else
           {
             <h3 class="text-center">No dwellings have been listed yet!</h3>
           }
+        </div>
+
         <div class="row">
           <div class="col-md-12 text-center">
             <button class="btn btn-outline-dark">@Html.ActionLink("List new dwelling", "Create")</button>
@@ -35,5 +64,3 @@
     </div>
   </div>
 </div>
-
-

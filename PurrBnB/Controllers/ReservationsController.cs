@@ -24,10 +24,10 @@ namespace PurrBnB.Controllers
     }
 
     public ActionResult Index()
-      {
-        List<Reservation> model = _db.Reservations.OrderBy(x => x.ReservationId).ToList();
-        return View(model);
-      }
+    {
+      List<Reservation> model = _db.Reservations.OrderBy(x => x.ReservationId).ToList();
+      return View(model);
+    }
 
 
     public async Task<ActionResult> Create()
@@ -48,11 +48,11 @@ namespace PurrBnB.Controllers
       _db.SaveChanges();
       float dwellingCost = _db.Dwellings.FirstOrDefault(dwelling => dwelling.DwellingId == DwellingId).CostPerNight;
 
-        if (DwellingId != 0)
-        {
-          _db.DwellingReservations.Add(new DwellingReservation() { DwellingId = DwellingId, ReservationId = reservation.ReservationId, CostPerNight = dwellingCost});
-          _db.SaveChanges();
-        }
+      if (DwellingId != 0)
+      {
+        _db.DwellingReservations.Add(new DwellingReservation() { DwellingId = DwellingId, ReservationId = reservation.ReservationId, CostPerNight = dwellingCost });
+        _db.SaveChanges();
+      }
       return RedirectToAction("Index");
     }
 
@@ -74,9 +74,14 @@ namespace PurrBnB.Controllers
     }
 
     [HttpPost]
-    public ActionResult Edit(Reservation reservation, int DwellingId)
+    public async Task<ActionResult> Edit(Reservation reservation, int DwellingId)
     {
-      if (DwellingId != 0)
+      var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+      var currentUser = await _userManager.FindByIdAsync(userId);
+      // _db.Entry(reservation).State = EntityState.Modified;
+      // _db.SaveChanges();
+      bool duplicate = _db.DwellingReservations.Any(join => join.DwellingId == DwellingId && join.ReservationId == reservation.ReservationId);
+      if (DwellingId != 0 && !duplicate)
       {
         _db.DwellingReservations.Add(new DwellingReservation() { DwellingId = DwellingId, ReservationId = reservation.ReservationId });
       }

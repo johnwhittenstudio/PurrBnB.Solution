@@ -5,14 +5,14 @@
 
 @using System.Security.Claims
 
-<h2>Create your user account here.</h2>
+<h2>Welcome</h2>
 <hr>
 @if (User.Identity.IsAuthenticated)
 {
   <p>Hello @User.Identity.Name!</p>
   @using (Html.BeginForm("LogOff", "Account"))
   {
-    <input type="submit" class="btn btn-default" value="Log out" />
+    <input type="submit" class="btn btn-outline-dark" value="Log out" />
   }
 }
 else

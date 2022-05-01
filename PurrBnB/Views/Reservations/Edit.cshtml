@@ -4,18 +4,23 @@
 }
 
 @model PurrBnB.Models.Reservation
+
 <h2>Edit this reservaton: @Html.DisplayFor(model => model.ReservationName)</h2>
+<h2> @Html.DisplayFor(model => model.DwellingId)</h2>
 
 @using (Html.BeginForm())
 {
+
+  @Html.HiddenFor(model => model.ReservationId)
+
   @Html.LabelFor(model => model.ReservationName)
   @Html.TextBoxFor(model => model.ReservationName)
-  
+
   @Html.LabelFor(model => model.TotalNights)
   @Html.TextBoxFor(model => model.TotalNights)
 
-  @Html.Label("Add Dwelling")
-  @Html.DropDownList("DwellingId", "Select Dwelling")
+  <!-- @Html.Label("Add Dwelling")
+  @Html.DropDownList("DwellingId", "Select Dwelling") -->
 
   <input type="submit" value="Save" />
 }

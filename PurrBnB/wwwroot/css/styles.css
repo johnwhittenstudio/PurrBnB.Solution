@@ -104,3 +104,36 @@ margin: 0 20px
 .welcomeMessage {
  padding-right: 25px;
 }
+
+
+/* Johns Styles
+-------------------------------------------------- */
+
+.flex-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.flex-item-left {
+  flex: auto;
+}
+
+.flex-item-right {
+  flex: auto;
+}
+
+.flex-container > div {
+  background-color: #f1f1f1;
+  border-radius: 5%;
+  margin: 10px;
+  padding: 20px;
+  font-size: 30px;
+}
+.gallery
+{
+  display: flex;
+  flex-direction: column;
+  float: left;
+}
