@@ -27,6 +27,8 @@ namespace PurrBnB.Models
     [Required]
     public int DwellingZip { get; set; }
     [Required]
+    public float DwellingLat { get; set; }
+    public float DwellingLong { get; set; }
     public int DwellingPetId { get; set; }
     public bool GroundLevelAccess { get; set; }
     [Required]
@@ -42,8 +44,6 @@ namespace PurrBnB.Models
     [Required]
     public string Accomodations { get; set; }
 
-    // public DateTime StartDate { get; set; }
-    // public DateTime EndDate { get; set; }
     public float CostPerNight { get; set; }
 
 
