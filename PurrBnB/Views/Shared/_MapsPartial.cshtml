@@ -1,9 +1,10 @@
 @model IEnumerable<PurrBnB.Models.Dwelling>
 
+
 <div id="map" style="height:400px;width:100%;"></div>
 
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDviYEqiPAMcdqCCwr0DTCOQq0XYv8Fge0&callback=initMap&v=weekly" defer></script>
 
+<script src="https://maps.googleapis.com/maps/api/js?key=@PurrBnB.Models.EnvironmentVariables.ApiKeyGoogle&callback=initMap&v=weekly" defer></script>
 <script type="text/javascript">
   // Initialize and add the map
   function initMap() {
@@ -11,7 +12,7 @@
     const portland = { lat: 45.503, lng: -122.583 };
     // The map, centered at Portland
     const map = new google.maps.Map(document.getElementById("map"), {
-      zoom: 7,
+      zoom: 10,
       center: portland,
     });
 
