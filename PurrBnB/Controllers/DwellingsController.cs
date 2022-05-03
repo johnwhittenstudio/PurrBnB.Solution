@@ -50,7 +50,10 @@ namespace PurrBnB.Controllers
       var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
       var currentUser = await _userManager.FindByIdAsync(userId);
       dwelling.User = currentUser;
-      var lat = ApiHelper.Geocode(EnvironmentVariables.ApiKeyGeo, dwelling);
+      var longitude = await ApiHelper.GeocodeLong(EnvironmentVariables.ApiKeyGeo, dwelling);
+      dwelling.DwellingLong = longitude;
+      var lat = await ApiHelper.GeocodeLat(EnvironmentVariables.ApiKeyGeo, dwelling);
+      dwelling.DwellingLat = lat;
       _db.Dwellings.Add(dwelling);
       _db.SaveChanges();
 
