@@ -8,24 +8,22 @@
 <script type="text/javascript">
   // Initialize and add the map
   function initMap() {
-    // Center of United States 44.64792861834611, -103.8564047589624
-    const centerOfUS = { lat: 44.64792861834611, lng: -103.8564047589624 };
-    // The map, centered at Belle Fourche, SD
+    // The location of Portland
+    const portland = { lat: 45.503, lng: -122.583 };
+    // The map, centered at Portland
     const map = new google.maps.Map(document.getElementById("map"), {
-      zoom: 4,
-      center: centerOfUS,
+      zoom: 10,
+      center: portland,
     });
 
     // The marker, positioned at center
     @foreach(var dwelling in @Model)
     {
       <text>
-        var constImage = "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png";
         var myLatLong = { lat: @dwelling.DwellingLat, lng: @dwelling.DwellingLong };
         var marker = new google.maps.Marker({
         position: myLatLong,
         map: map,
-        icon: constImage,
         });
       </text>
     }

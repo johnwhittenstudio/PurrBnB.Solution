@@ -26,7 +26,7 @@ namespace  PurrBnB.Controllers
       List<Pet> model = _db.Pets.OrderBy(x => x.Name).ToList();
       return View(model);
     }
-    [Authorize]
+
     public ActionResult Create()
     {
       ViewBag.DwellingId = new SelectList(_db.Dwellings, "DwellingId", "Name");
@@ -45,7 +45,7 @@ namespace  PurrBnB.Controllers
       }
       return RedirectToAction("Index");
     }
-    [Authorize]
+
     public ActionResult Details(int id)
     {
       var thisPet = _db.Pets
@@ -55,7 +55,6 @@ namespace  PurrBnB.Controllers
       return View(thisPet);
     }
 
-    [Authorize]
     public ActionResult Edit(int id)
     {
       var thisPet = _db.Pets.FirstOrDefault(pet => pet.PetId == id);
@@ -69,7 +68,7 @@ namespace  PurrBnB.Controllers
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
-    [Authorize]
+
     public ActionResult Delete(int id)
     {
       var thisPet = _db.Pets.FirstOrDefault(pet => pet.PetId == id);

@@ -11,25 +11,30 @@
     <h1 class="text-center">Edit Pet</h1>
     <div class="card">
       <div class="card-header">
-        <h2>Edit this reservation: @Html.DisplayFor(model => model.ReservationName)</h2>
+        <h2>Edit this reservaton: @Html.DisplayFor(model => model.ReservationName)</h2>
+        <h2> @Html.DisplayFor(model => model.DwellingId)</h2>
       </div>
       <div class="card-body">
-        <div class="row">
-        <div class="col-12">
-          @using (Html.BeginForm())
-          {
-              @Html.HiddenFor(model => model.ReservationId)
-              @Html.LabelFor(model => model.ReservationName, new {@class = "form-label"})
-              @Html.TextBoxFor(model => model.ReservationName, new {@class = "form-control"})
-              <br>
-              @Html.LabelFor(model => model.TotalNights, new {@class = "form-label"})
-              @Html.TextBoxFor(model => model.TotalNights, new {@class = "form-control"})
-              <br>
-              <input class="btn btn-primary" type="submit" value="Save" />
-          }
-        </div>
-        </div>
+          <div class="row">
+            @using (Html.BeginForm())
+            {
+              <div class="col-md-5">
+                @Html.HiddenFor(model => model.ReservationId)
+                @Html.LabelFor(model => model.ReservationName, new {@class = "form-label"})
+                @Html.TextBoxFor(model => model.ReservationName, new {@class = "form-control"})
+              </div>
+              <div class="col-md-5">
+                @Html.LabelFor(model => model.TotalNights, new {@class = "form-label"})
+                @Html.TextBoxFor(model => model.TotalNights, new {@class = "form-control"})
+                @* <!-- @Html.Label("Add Dwelling")
+                @Html.DropDownList("DwellingId", "Select Dwelling") --> *@
+              </div>
+              <div class="col-md-2">
+                <input class="btn btn-primary" type="submit" value="Save" />
+              </div>
+            }
       </div>
     </div>
   </div>
+</div>
 </div>

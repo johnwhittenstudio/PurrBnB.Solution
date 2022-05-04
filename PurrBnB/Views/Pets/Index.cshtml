@@ -20,8 +20,7 @@
           @if (@Model.Count() == 0){
             <h3>No pets have been added yet!</h3>
           }
-          @foreach (Pet pet in Model)
-          {
+          @foreach (Pet pet in Model){
               <div class="col-md-5">
                 <div id="card" class="card border-primary">
                   <div class="card-header">
@@ -37,8 +36,16 @@
           &nbsp;
         <div class="row">
           <div class="col-md-12 text-center">
+
           <button class="btn btn-outline-dark">@Html.ActionLink("Home", "Index", "Home")</button>
       </div>
     </div>
+    
+
+    
   </div>
 </div>
+
+
+
+

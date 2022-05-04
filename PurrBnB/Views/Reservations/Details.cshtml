@@ -7,51 +7,44 @@
 
 <div class="row">
   <div class="col-md-12">
-    <div id = "card" class = "card border-dark">
-      <div class = "card header">
-        <h1 id="title" class="text-center">@Html.DisplayFor(model => model.ReservationName) Reservation Info</h1>
-      </div>
-    <div class = "card-body">
-      <div class="row">
-        <div class="col-12 text-center">
-          <button class="btn btn-outline-info">@Html.ActionLink("Edit Reservation", "Edit", new { id = Model.ReservationId
+    <h1 id="title" class="text-center">@Html.DisplayFor(model => model.ReservationName) Reservation Info</h1>
+
+    <div class="row">
+      <div class="col align-self-center">
+        <button class="btn btn-outline-info">@Html.ActionLink("Edit Reservation", "Edit", new { id = Model.ReservationId
           }, new { @class = "btn btn-outline", id="button" })</button>
-          <button class="btn btn-outline-danger">@Html.ActionLink("Delete Reservation", "Delete", new { id =
+        <button class="btn btn-outline-info">@Html.ActionLink("Delete Reservation", "Delete", new { id =
           Model.ReservationId }, new { @class = "btn btn-outline", id="button" })</button>
       </div>
     </div>
-    <br>
-    <div class = "row">
-      <div class = "col-md-12">
-        <table class="table table-bordered">
-          <thead>
-              <tr class="dwellingsDetails">
-                <th>Id</th>
-                <th>Name</th>
-                <th>Total Nights</th>   
-                <th>Total Cost</th>
-              </tr>
-            </thead>
-            <tbody>
-            <tr>
-              <td>@Html.DisplayFor(model => model.ReservationId)</td>
-              <td>@Html.DisplayFor(model => model.ReservationName)</td>
-              <td>@Html.DisplayFor(model => model.TotalNights)</td>
-              @foreach(var joinDwelling in Model.JoinEntities2)
-              {
-                <td>@((@Model.TotalNights * @joinDwelling.CostPerNight).ToString("c"))
-                </td>
-              } 
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
+
+  <table class="table table-bordered">
+    <thead>
+      <tr class="dwellingsDetails">
+        <th>Id</th>
+        <th>Name</th>
+        <th>Total Nights</th>   
+        <th>Total Cost</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>@Html.DisplayFor(model => model.ReservationId)</td>
+        <td>@Html.DisplayFor(model => model.ReservationName)</td>
+        <td>@Html.DisplayFor(model => model.TotalNights)</td>
+        @foreach(var joinDwelling in Model.JoinEntities2)
+        {
+          <td>@((@Model.TotalNights * @joinDwelling.CostPerNight).ToString("c"))
+          </td>
+        } 
+      </tr>
+    </tbody>
+  </table>
+>>>>>>> christen2
     <div class="row">
-    <div class="col-12">
       @if (@Model.JoinEntities2.Count == 0)
       {
-        <p class="text-center">This reservation does not currently contain a dwelling</p>
+        <h3 class="text-center">This reservation does not currently contain a dwelling</h3>
       }
       else
       {
@@ -59,7 +52,7 @@
         {
           if (join.Dwelling != null)
           {
-            <h2>This reservation is at: @Html.ActionLink(@join.Dwelling.DwellingName, "Details", "Dwelling", new { id = join.DwellingId}) </h2>
+            <h2>@Html.ActionLink(@join.Dwelling.DwellingName, "Details", "Dwelling", new { id = join.DwellingId}) </h2>
             @using (Html.BeginForm("DeleteDwelling", "Reservations"))
             {
               <!-- @Html.Hidden("joinId", @join.DwellingReservationId)
@@ -68,8 +61,6 @@
           }
         }
       }
-    </div>
-      <br>
       <button class="btn btn-outline">@Html.ActionLink("Back to Reservations", "Index")</button>
     </div>
   </div>

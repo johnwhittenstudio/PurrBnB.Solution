@@ -1,6 +1,6 @@
 # <p align="center"> 🐾 **Purr BnB** 🐾 </p>
 
-#### _A web-based application to keep track of listed dwellings and pets at PurrBnB using Entity to manage a many-to-many relationship in an SQL database and Identity to manage user Authentication._
+#### _a web-based application to keep track of listed dwellings and pets at PurrBnB using Entity to manage a many-to-many relationship in an SQL database and Identity to manage user Authentication._
 
 #### by **Phil Curran, Anastasia Han, Brit Wallace, Christen Weston, John Whitten** ~ May 2, 2022
 
