@@ -32,13 +32,13 @@
 
 ## Description <a id="description"></a>
 
-An app to track treats and special flavors for Pierre's Confectionery. Data is stored in a SQL database and users are authenticated with Identity. Anyone may view the bakery's offerings but only authenticated users may create, update and delete.
+An app for making a reservation at an availiabe dwelling with Purr BnB.  Data is stored in a SQL database and users are authenticated with Identity. Anyone may view the BnB and make a reservation but only authenticated users may create, update and delete a dwelling or pet.
 
-### Schema
+<!-- ### Schema
 
-Add image.
+Add image. -->
 
-<!-- ![Schema](./PierresTreats/wwwroot/img/schema_01.png) -->
+<!-- ![Schema](./PurrBnB/wwwroot/img/schema_01.png) -->
 
 ## Project Setup/Installation Instructions <a id="setup"></a>
 
@@ -53,24 +53,35 @@ Add image.
 
 - Open the terminal on your local computer.
 - Navigate to the parent directory of your preference.
-- Clone this project using `$ git clone https://github.com/johnwhittenstudio/PierresTreats.Solution`
+- Clone this project using `$ git clone https://github.com/johnwhittenstudio/PurrBnB.Solution`
 
 ### Scaffold and connect the database
 
 - Launch the MySQL server with the command `mysql -uroot -p[YOUR-PASSWORD-HERE]`
-- Navigate to the directory: `$ cd PierresTreats.Solution`
+- Navigate to the directory: `$ cd PurrBnB.Solution`
 - Open in Vs code: `$ code .`
-- Navigate to the project directory PierresTreats: `$ cd PierresTreats` and type the following command in the terminal `$ touch appsettings.json`
+- Navigate to the project directory PurrBnB: `$ cd PurrBnB` and type the following command in the terminal `$ touch appsettings.json`
 - In the appsettings.json file enter the following code:
 
 ```
 {
     "ConnectionStrings": {
-        "DefaultConnection": "Server=localhost;Port=3306;database=john_whitten_treats;uid=root;pwd=[YOUR-PASSWORD-HERE];"
+        "DefaultConnection": "Server=localhost;Port=3306;database=purrbnb;uid=root;pwd=[YOUR-PASSWORD-HERE];"
     }
 }
 ```
-
+- Sign up for [GoogleMaps](https://developers.google.com/maps/documentation/javascript/get-api-key) and [GeoApify](https://www.geoapify.com/) . Follow the instructions on the GoogleMaps website for creating an API Key. GeoApify you simply need to create a login account and then an Api Key will be available!
+- Create the EnvironmentVariables.cs file and save it under Models
+```
+namespace PurrBnB.Models
+{
+    public static class EnvironmentVariables
+    {
+        public static string ApiKeyGeo = "[YourGeoApifyApiKeyHere]";
+        public static string ApiKeyGoogle = "[YourGoogleMapsApiKeyHere]";
+    }
+}
+```
 - Recreate project environment and install required dependencies with terminal command `$ dotnet restore`
 - Build the program with the command `$ dotnet build`
 - Scaffold the database with the command `$ dotnet ef database update`
@@ -85,7 +96,7 @@ Add image.
 
 ## License <a id="license"></a>
 
-[MIT License](https://opensource.org/licenses/MIT) © 2022 _John Whitten_
+[MIT License](https://opensource.org/licenses/MIT) © 2022 _PurrBnB_
 
 ## Contact <a id="contact"></a>
 
