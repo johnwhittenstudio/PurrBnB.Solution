@@ -105,6 +105,7 @@ namespace PurrBnB.Controllers
       return View(thisDwelling);
     }
 
+    [Authorize]
     public ActionResult Edit(int id)
     {
       var thisDwelling = _db.Dwellings.FirstOrDefault(dwelling => dwelling.DwellingId == id);
@@ -141,7 +142,8 @@ namespace PurrBnB.Controllers
       }
       return RedirectToAction("Index");
     }
-
+    
+    [Authorize]
     public ActionResult Delete(int id)
     {
       var thisDwelling = _db.Dwellings.FirstOrDefault(dwelling => dwelling.DwellingId == id);

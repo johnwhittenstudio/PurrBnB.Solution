@@ -1,6 +1,6 @@
 # <p align="center"> 🐾 **Purr BnB** 🐾 </p>
 
-#### _a web-based application to keep track of listed dwellings and pets at PurrBnB using Entity to manage a many-to-many relationship in an SQL database and Identity to manage user Authentication._
+#### _A web-based application to keep track of listed dwellings and pets at PurrBnB using Entity to manage a many-to-many relationship in an SQL database and Identity to manage user Authentication._
 
 #### by **Phil Curran, Anastasia Han, Brit Wallace, Christen Weston, John Whitten** ~ May 2, 2022
 
@@ -100,10 +100,10 @@ namespace PurrBnB.Models
 
 ## Contact <a id="contact"></a>
 
-Phil Curran [pecurran@hotmail.com](mailto:pecurran@hotmail.com)
-Anastasia Han [anastasia.han@yahoo.com](mailto:anastasia.han@yahoo.com) 
-Brit Wallace [britwallace888@gmail.com](mailto:britwallace888@gmail.com)
-Christen Weston [paleeserecycle@gmail.com](mailto:paleeserecycle@gmail.com)
-John Whitten: [johnwhitten.studio@gmail.com](mailto:johnwhitten.studio@gmail.com)
+Phil Curran [pecurran@hotmail.com](mailto:pecurran@hotmail.com) [LinkedIn](https://www.linkedin.com/in/philcurran/) [GitHub](https://github.com/phil-curran)
+Anastasia Han [anastasia.han@yahoo.com](mailto:anastasia.han@yahoo.com) [LinkedIn](https://www.linkedin.com/in/jungyeonhan/) [GitHub](https://github.com/1ana-banana)
+Brit Wallace [britwallace888@gmail.com](mailto:britwallace888@gmail.com) [LinkedIn](https://www.linkedin.com/in/brit-wallace/) [GitHub](https://github.com/BritWallace)
+Christen Weston [paleeserecycle@gmail.com](mailto:paleeserecycle@gmail.com) [LinkedIn](https://www.linkedin.com/in/christenweston/) [GitHub](https://github.com/ChristenWeston)
+John Whitten: [johnwhitten.studio@gmail.com](mailto:johnwhitten.studio@gmail.com) [LinkedIn](https://www.linkedin.com/in/johnwhitten-studio/) [GitHub](https://github.com/johnwhittenstudio)
 
 

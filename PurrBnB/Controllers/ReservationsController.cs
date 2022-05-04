@@ -28,8 +28,7 @@ namespace PurrBnB.Controllers
       List<Reservation> model = _db.Reservations.OrderBy(x => x.ReservationId).ToList();
       return View(model);
     }
-
-
+    [Authorize]
     public async Task<ActionResult> Create()
     {
       var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
@@ -55,7 +54,7 @@ namespace PurrBnB.Controllers
       }
       return RedirectToAction("Index");
     }
-
+    [Authorize]
     public ActionResult Details(int id)
     {
       var thisReservation = _db.Reservations
@@ -65,7 +64,7 @@ namespace PurrBnB.Controllers
       //ViewBag.Dwellings = _db.Dwellings.Where(entry = entry.DwellingId))
       return View(thisReservation);
     }
-
+    [Authorize]
     public ActionResult Edit(int id)
     {
       var thisReservation = _db.Reservations.FirstOrDefault(reservation => reservation.ReservationId == id);
@@ -89,7 +88,7 @@ namespace PurrBnB.Controllers
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
-
+    [Authorize]
     public ActionResult Delete(int id)
     {
       var thisReservation = _db.Reservations.FirstOrDefault(reservation => reservation.ReservationId == id);

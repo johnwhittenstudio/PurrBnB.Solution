@@ -1,41 +1,63 @@
 @{
-  Layout = "_Layout";
-  ViewData["Title"] = "Edit Pet";
+	Layout = "_Layout";
+	ViewData["Title"] = "Edit Pet";
 }
 
 @model PurrBnB.Models.Pet
 
 <div class="row">
-  <div class="col-md-12">
-    <h1 class="text-center">Edit Pet</h1>
-    <div class="card">
-      <div class="card-header">
-        <h4>Edit this Pet: @Html.DisplayFor(model => model.Name)</h4>
-      </div>
-      <div class="card-body">
-        @using (Html.BeginForm()){
-          @Html.HiddenFor(model => model.PetId)
-          
-          @Html.LabelFor(model => model.Name)
-          @Html.TextBoxFor(model => model.Name, new {@required = "required"})
-          @Html.LabelFor(model => model.Age)
-          @Html.TextBoxFor(model => model.Age, new {@required = "required"})
-          @Html.LabelFor(model => model.Color)
-          @Html.TextBoxFor(model => model.Color, new {@required = "required"})
-          @Html.LabelFor(model => model.Interests)
-          @Html.TextBoxFor(model => model.Interests, new {@required = "required"})
-          @Html.LabelFor(model => model.FavoriteToys)
-          @Html.TextBoxFor(model => model.FavoriteToys, new {@required = "required"})
-          @Html.LabelFor(model => model.Schedule)
-          @Html.TextBoxFor(model => model.Schedule, new {@required = "required"})
-          @Html.LabelFor(model => model.Personality)
-          @Html.TextBoxFor(model => model.Personality, new {@required = "required"})
-          @Html.LabelFor(model => model.Species)
-          @Html.TextBoxFor(model => model.Species, new {@required = "required"})
-          <input id="button" class="btn btn-outline my-sm-0" type="submit" value="Save"/>
-        }
-        <button class="btn btn-outline">@Html.ActionLink("Back to list", "Index")</button>
-      </div>
-    </div>
-  </div>
+	<div class="col-md-12">
+		<h1 class="text-center">Edit Pet</h1>
+		<div class="card">
+			<div class="card-header">
+				<h4>Edit this Pet: @Html.DisplayFor(model => model.Name)</h4>
+			</div>
+			<div class="card-body">
+				@using (Html.BeginForm())
+				{
+					@Html.HiddenFor(model => model.PetId)
+					<div class="row">
+						<div class="col-3">
+							@Html.LabelFor(model => model.Name, new {@class = "form-label"})
+							@Html.TextBoxFor(model => model.Name, new {@required = "required", @class = "form-control"})
+						</div>
+						<div class="col-3">
+							@Html.LabelFor(model => model.Age, new {@class = "form-label"})
+							@Html.TextBoxFor(model => model.Age, new {@required = "required", @class = "form-control"})
+						</div>
+						<div class="col-3">
+							@Html.LabelFor(model => model.Color, new {@class = "form-label"})
+							@Html.TextBoxFor(model => model.Color, new {@required = "required", @class = "form-control"})
+						</div>
+						<div class="col-3">
+							@Html.LabelFor(model => model.Interests, new {@class = "form-label"})
+							@Html.TextBoxFor(model => model.Interests, new {@required = "required", @class = "form-control"})
+						</div>
+					</div>
+          <br>
+					<div class="row">
+						<div class="col-3">
+							@Html.LabelFor(model => model.FavoriteToys, new {@class = "form-label"}))
+							@Html.TextBoxFor(model => model.FavoriteToys, new {@required = "required", @class = "form-control"})
+						</div>
+						<div class="col-3">
+							@Html.LabelFor(model => model.Schedule, new {@class = "form-label"}))
+							@Html.TextBoxFor(model => model.Schedule, new {@required = "required", @class = "form-control"})
+						</div>
+						<div class="col-3">
+							@Html.LabelFor(model => model.Personality, new {@class = "form-label"}))
+							@Html.TextBoxFor(model => model.Personality, new {@required = "required", @class = "form-control"})
+						</div>
+						<div class="col-3">
+							@Html.LabelFor(model => model.Species, new {@class = "form-label"}))
+							@Html.TextBoxFor(model => model.Species, new {@required = "required", @class = "form-control"})
+						</div>
+					</div>
+          <br>
+					<input id="button" class="btn btn-outline" type="submit" value="Save"/>
+				}
+				<button class="btn btn-outline">@Html.ActionLink("Back to list", "Index")</button>
+			</div>
+		</div>
+	</div>
 </div>
