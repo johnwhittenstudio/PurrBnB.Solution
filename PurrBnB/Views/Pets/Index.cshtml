@@ -13,8 +13,9 @@
       <div class="card-header">
         <h1 class="text-center">Pets</h1>
       </div>
-        <div class="card-body">
 
+        <div class="card-body">
+        <center><button class="btn btn-outline-dark"> @Html.ActionLink("Add new pet", "Create")</button></center> &nbsp;
           <div class="flex-container">
           @if (@Model.Count() == 0){
             <h3>No pets have been added yet!</h3>
@@ -24,7 +25,7 @@
                 <div id="card" class="card border-primary">
                   <div class="card-header">
                     <div>
-                      <center><img src="~/img/purrBnBLogo.svg" alt="" width="35" height="32" class="d-inline-block align-text-middle"><h3>@Html.ActionLink($"{pet.Name}", "Details", new {id = pet.PetId})</h3>
+                      <img src="~/img/cat_logo.png" alt="" width="80" class="d-inline-block align-text-middle"><h3>@Html.ActionLink($"{pet.Name}", "Details", new {id = pet.PetId})</h3>
                       <h6>@Html.DisplayFor(model => pet.Age) yr old @Html.DisplayFor(model => pet.Personality) @Html.DisplayFor(model => pet.Species)</h6>
                     </div>
                   </div>
@@ -32,12 +33,11 @@
               </div>
           }
           </div>
-
+          &nbsp;
         <div class="row">
           <div class="col-md-12 text-center">
-            <button class="btn btn-outline-dark"> @Html.ActionLink("Add new pet", "Create")</button> &nbsp;
-            <button class="btn btn-outline-dark">@Html.ActionLink("Home", "Index", "Home")</button>
 
+          <button class="btn btn-outline-dark">@Html.ActionLink("Home", "Index", "Home")</button>
       </div>
     </div>
     

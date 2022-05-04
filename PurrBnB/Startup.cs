@@ -12,9 +12,6 @@ using PurrBnB.Models;
 using Microsoft.AspNetCore.Identity;
 
 
-
-
-
 namespace PurrBnB
 {
   public class Startup
@@ -44,11 +41,14 @@ namespace PurrBnB
         .AddDbContext<PurrBnBContext>(options => options
         .UseMySql(Configuration["ConnectionStrings:DefaultConnection"], ServerVersion.AutoDetect(Configuration["ConnectionStrings:DefaultConnection"])));
 
-      var physicalProvider = _env.ContentRootFileProvider;
+      // var physicalProvider = _env.ContentRootFileProvider;
 
-      services.AddSingleton<IFileProvider>(
-        new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/img"))
-      );
+      // services.AddSingleton<IFileProvider>(
+      //   new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/img"))
+      // );
+      
+      // services.AddDbContext<PurrBnBContext>(options =>
+      // options.UseMySql(Configuration.GetConnectionString("DevConnection")));
 
       services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<PurrBnBContext>()

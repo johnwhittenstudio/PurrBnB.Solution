@@ -13,13 +13,18 @@
         <h1 class="text-center">List of Available Dwellings</h1>
         @* <div class="card" style="width:400px">
         <img class="card-img-top" src="/img/aframe_01.jpg" alt="Card image"> *@
-        <div class="card-body">
+        @* <div class="card-body">
           <h4 class="card-title">Gallery</h4>
           <p class="card-text">Some example text.</p>
-        </div>
+        </div> *@
       </div>
-      
-      
+      &nbsp;
+        <div class="row">
+          <div class="col-md-12 text-center">
+            <button class="btn btn-outline-dark">@Html.ActionLink("List new dwelling", "Create")</button>
+          </div>
+        </div>          
+          &nbsp;
         <div class="flex-container">
         
       
@@ -31,9 +36,9 @@
               <div class="col-md-5">
                 <div id="card" class="card border-primary">
                   <div class="card-header">
-                    <img class="card-img-top" src="/img/aframe_01.jpg" alt="Card image">
+                    <img class="card-img-top" src="/img/home_logo.png" alt="Card image">
                     <div class="display-field">
-                      <img class="img-thumbnail" src="@dwelling.ImagePath" asp-append-version="true" alt="@dwelling.ImagePath" />
+                      @* <img class="img-thumbnail" src="@dwelling.ImagePath" asp-append-version="true" alt="@dwelling.ImagePath" /> *@
                       @* <img src="@Url.Content(@Model.DwellingImage)" alt="@Model.AlternateText" /> *@
                     </div>
                     <div>
@@ -42,6 +47,7 @@
                       @* </center> *@
                     </div>
                     <div class="card-body text-primary">
+
                       <h5>@Html.DisplayFor(model => dwelling.DwellingCity), @Html.DisplayFor(model =>
                     dwelling.DwellingState)</h5>
                       <h6>$@Html.DisplayFor(model => dwelling.CostPerNight) daily rate</h6>
@@ -66,10 +72,6 @@
             <h3 class="text-center">No dwellings have been listed yet!</h3>
           }
         </div>
-        <div class="row">
-          <div class="col-md-12 text-center">
-            <button class="btn btn-outline-dark">@Html.ActionLink("List new dwelling", "Create")</button>
-          </div>
         </div>
       </div>
     </div>

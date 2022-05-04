@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Http;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System;
@@ -41,16 +42,8 @@ namespace PurrBnB.Models
     public bool PrivateAccess { get; set; }
     [Required]
     public string Accomodations { get; set; }
-    [Display(Name = "Select the Image")]
-    public string ImagePath { get; set; }
 
-    // public DateTime StartDate { get; set; }
-    // public DateTime EndDate { get; set; }
     public float CostPerNight { get; set; }
-
-    // public byte[] DwellingImage { get; set; } 
-    // public string AlternateText { get; set; }
-
 
 
     public virtual ApplicationUser User { get; set; }

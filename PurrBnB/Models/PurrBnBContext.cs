@@ -6,6 +6,7 @@ namespace PurrBnB.Models
   public class PurrBnBContext : IdentityDbContext<ApplicationUser>
   {
     public DbSet<Dwelling> Dwellings { get; set; }
+    public DbSet<Dwelling> Images { get; set; }
     public DbSet<Pet> Pets { get; set; }
     public DbSet<DwellingPet> DwellingPet { get; set; }
     public DbSet<Reservation> Reservations { get; set; }

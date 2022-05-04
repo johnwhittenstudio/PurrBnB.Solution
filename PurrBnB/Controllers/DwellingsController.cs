@@ -13,8 +13,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
-
 using PurrBnB.Models;
+
 
 namespace PurrBnB.Controllers
 {
@@ -22,14 +22,14 @@ namespace PurrBnB.Controllers
   {
     private readonly PurrBnBContext _db;
     private readonly UserManager<ApplicationUser> _userManager;
-    private readonly IFileProvider fileProvider;
-    private readonly IHostEnvironment webHostingEnvironment;
-    public DwellingsController(UserManager<ApplicationUser> UserManager, PurrBnBContext db, IFileProvider fileprovider, IHostEnvironment env)
+    // private readonly IFileProvider fileProvider;
+    // private readonly IHostEnvironment webHostingEnvironment;
+    public DwellingsController(UserManager<ApplicationUser> UserManager, PurrBnBContext db)
     {
       _userManager = UserManager;
       _db = db;
-      fileProvider = fileprovider;
-      webHostingEnvironment = env;
+      // fileProvider = fileprovider;
+      // webHostingEnvironment = env;
     }
 
 
@@ -37,6 +37,8 @@ namespace PurrBnB.Controllers
     {
       // List<Dwelling> model = _db.Dwellings.OrderBy(dwelling => dwelling.DwellingOwnerName).ToList();
       List<Dwelling> model = _db.Dwellings.OrderBy(x => x.DwellingName).ToList();
+      // string wwwPath = this.webHostingEnvironment.WebRootPath;
+      // string contentPath = this.webHostingEnvironment.ContentRootPath;
       return View(model);
     }
 
@@ -51,7 +53,7 @@ namespace PurrBnB.Controllers
     }
 
     [HttpPost]
-    public async Task<ActionResult> Create(Dwelling dwelling, int PetId, IFormFile file)
+    public async Task<ActionResult> Create(Dwelling dwelling, int PetId)
     {
       var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
       var currentUser = await _userManager.FindByIdAsync(userId);
@@ -59,29 +61,29 @@ namespace PurrBnB.Controllers
       _db.Dwellings.Add(dwelling);
       _db.SaveChanges();
 
-      if (file != null || file.Length != 0)
-      {
-        FileInfo fi = new FileInfo(file.FileName);
-        var newFilename = dwelling.DwellingId + "_" + String.Format("{0:d}", (DateTime.Now.Ticks / 10) % 100000000) + fi.Extension;
-        var webPath = webHostingEnvironment.WebRootPath;
-        var path = Path.Combine("" , webPath + @"\img\" + newFilename);
-        var pathToSave = @"/img/" + newFilename;
-        using (var stream = new FileStream(path, FileMode.Create))
-        {
-            await file.CopyToAsync(stream);
-        }
-        dwelling.ImagePath = pathToSave;
-        _db.Update(dwelling);
-        await _db.SaveChangesAsync();
-        {
-          return RedirectToAction(nameof(Index));
-        }
-      }
+      // if (file != null || file.Length != 0)
+      // {
+      //   FileInfo fi = new FileInfo(file.FileName);
+      //   var newFilename = dwelling.DwellingId + "_" + String.Format("{0:d}", (DateTime.Now.Ticks / 10) % 100000000) + fi.Extension;
+        // var webPath = webHostingEnvironment.WebRootPath;
+        // var path = Path.Combine("", webPath + @"\img\" + newFilename);
+        // var pathToSave = @"/img/" + newFilename;
+        // using (var stream = new FileStream(path, FileMode.Create))
+        // {
+        //   await file.CopyToAsync(stream);
+        // }
+        // dwelling.ImagePath = pathToSave;
+      //   _db.Update(dwelling);
+      //   await _db.SaveChangesAsync();
+      //   {
+      //     return RedirectToAction(nameof(Index));
+      //   }
+      // }
 
       if (PetId != 0)
       {
-   //     _db.DwellingPets.Add(new DwellingPet() { PetId = PetId, DwellingId = dwelling.DwellingId});
-     //     _db.SaveChanges();
+        //     _db.DwellingPets.Add(new DwellingPet() { PetId = PetId, DwellingId = dwelling.DwellingId});
+        //     _db.SaveChanges();
       }
       return RedirectToAction("Index");
     }
@@ -107,13 +109,13 @@ namespace PurrBnB.Controllers
     {
       if (PetId != 0)
       {
-        _db.DwellingPet.Add(new DwellingPet() { PetId = PetId, DwellingId = dwelling.DwellingId});
+        _db.DwellingPet.Add(new DwellingPet() { PetId = PetId, DwellingId = dwelling.DwellingId });
       }
       _db.Entry(dwelling).State = EntityState.Modified;
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
-  
+
     public ActionResult AddPet(int id)
     {
       var thisDwelling = _db.Dwellings.FirstOrDefault(dwelling => dwelling.DwellingId == id);
