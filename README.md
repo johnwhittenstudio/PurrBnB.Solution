@@ -105,5 +105,3 @@ Anastasia Han [anastasia.han@yahoo.com](mailto:anastasia.han@yahoo.com) [LinkedI
 Brit Wallace [britwallace888@gmail.com](mailto:britwallace888@gmail.com) [LinkedIn](https://www.linkedin.com/in/brit-wallace/) [GitHub](https://github.com/BritWallace)<br>
 Christen Weston [paleeserecycle@gmail.com](mailto:paleeserecycle@gmail.com) [LinkedIn](https://www.linkedin.com/in/christenweston/) [GitHub](https://github.com/ChristenWeston)<br>
 John Whitten: [johnwhitten.studio@gmail.com](mailto:johnwhitten.studio@gmail.com) [LinkedIn](https://www.linkedin.com/in/johnwhitten-studio/) [GitHub](https://github.com/johnwhittenstudio)
-
-
