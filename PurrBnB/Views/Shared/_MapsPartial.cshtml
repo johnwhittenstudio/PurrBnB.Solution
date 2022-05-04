@@ -20,9 +20,9 @@
     @foreach(var dwelling in @Model)
     {
       <text>
-        var @dwelling.DwellingName = { lat: @dwelling.DwellingLat, lng: @dwelling.DwellingLong };
+        var myLatLong = { lat: @dwelling.DwellingLat, lng: @dwelling.DwellingLong };
         var marker = new google.maps.Marker({
-        position: @dwelling.DwellingName,
+        position: myLatLong,
         map: map,
         });
       </text>
