@@ -8,13 +8,10 @@
 <div class="row">
   <div class="col-md-12">
     <h1 class="text-center">Edit Pet</h1>
-    
     <div class="card">
-      
       <div class="card-header">
         <h4>Edit this Pet: @Html.DisplayFor(model => model.Name)</h4>
       </div>
-      
       <div class="card-body">
         @using (Html.BeginForm()){
           @Html.LabelFor(model => model.Name)
@@ -35,14 +32,8 @@
           @Html.TextBoxFor(model => model.Species, new {@required = "required"})
           <input id="button" class="btn btn-outline my-sm-0" type="submit" value="Save"/>
         }
-        
         <button class="btn btn-outline">@Html.ActionLink("Back to list", "Index")</button>
       </div>
-      
     </div>
-    
   </div>
 </div>
-
-    
-    

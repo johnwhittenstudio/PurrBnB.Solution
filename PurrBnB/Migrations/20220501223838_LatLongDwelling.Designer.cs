@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PurrBnB.Models;
 
 namespace PurrBnB.Migrations
 {
     [DbContext(typeof(PurrBnBContext))]
-    partial class PurrBnBContextModelSnapshot : ModelSnapshot
+    [Migration("20220501223838_LatLongDwelling")]
+    partial class LatLongDwelling
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -283,7 +285,7 @@ namespace PurrBnB.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Dwelling");
+                    b.ToTable("Dwellings");
                 });
 
             modelBuilder.Entity("PurrBnB.Models.DwellingPet", b =>

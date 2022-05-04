@@ -14,6 +14,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using PurrBnB.Models;
+using System.Runtime.Serialization.Json;  
+using GoogleMaps.LocationServices;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 
 namespace PurrBnB.Controllers
@@ -58,6 +62,10 @@ namespace PurrBnB.Controllers
       var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
       var currentUser = await _userManager.FindByIdAsync(userId);
       dwelling.User = currentUser;
+      var longitude = await ApiHelper.GeocodeLong(EnvironmentVariables.ApiKeyGeo, dwelling);
+      dwelling.DwellingLong = longitude;
+      var lat = await ApiHelper.GeocodeLat(EnvironmentVariables.ApiKeyGeo, dwelling);
+      dwelling.DwellingLat = lat;
       _db.Dwellings.Add(dwelling);
       _db.SaveChanges();
 

@@ -28,6 +28,8 @@ namespace PurrBnB.Models
     [Required]
     public int DwellingZip { get; set; }
     [Required]
+    public float DwellingLat { get; set; }
+    public float DwellingLong { get; set; }
     public int DwellingPetId { get; set; }
     public bool GroundLevelAccess { get; set; }
     [Required]

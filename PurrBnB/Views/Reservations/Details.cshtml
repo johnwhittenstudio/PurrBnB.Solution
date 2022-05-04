@@ -18,28 +18,29 @@
       </div>
     </div>
 
-    <table class="table table-bordered">
-      <thead>
-        <tr class="dwellingsDetails">
-          <th>Id</th>
-          <th>Name</th>
-          <th>Total Nights</th>
-          <th>Total Cost</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>@Html.DisplayFor(model => model.ReservationId)</td>
-          <td>@Html.DisplayFor(model => model.ReservationName)</td>
-          <td>@Html.DisplayFor(model => model.TotalNights)</td>
-          @foreach (var joinDwelling in Model.JoinEntities2)
-          {
-            <td>@((@Model.TotalNights * @joinDwelling.CostPerNight).ToString("c"))
-            </td>
-          }
-        </tr>
-      </tbody>
-    </table>
+  <table class="table table-bordered">
+    <thead>
+      <tr class="dwellingsDetails">
+        <th>Id</th>
+        <th>Name</th>
+        <th>Total Nights</th>   
+        <th>Total Cost</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>@Html.DisplayFor(model => model.ReservationId)</td>
+        <td>@Html.DisplayFor(model => model.ReservationName)</td>
+        <td>@Html.DisplayFor(model => model.TotalNights)</td>
+        @foreach(var joinDwelling in Model.JoinEntities2)
+        {
+          <td>@((@Model.TotalNights * @joinDwelling.CostPerNight).ToString("c"))
+          </td>
+        } 
+      </tr>
+    </tbody>
+  </table>
+>>>>>>> christen2
     <div class="row">
       @if (@Model.JoinEntities2.Count == 0)
       {
