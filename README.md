@@ -101,12 +101,15 @@ namespace PurrBnB.Models
 ## Contact <a id="contact"></a>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 Phil Curran [pecurran@hotmail.com](mailto:pecurran@hotmail.com) [LinkedIn](https://www.linkedin.com/in/philcurran/) [GitHub](https://github.com/phil-curran)<br>
 Anastasia Han [anastasia.han@yahoo.com](mailto:anastasia.han@yahoo.com) [LinkedIn](https://www.linkedin.com/in/jungyeonhan/) [GitHub](https://github.com/1ana-banana)<br>
 Brit Wallace [britwallace888@gmail.com](mailto:britwallace888@gmail.com) [LinkedIn](https://www.linkedin.com/in/brit-wallace/) [GitHub](https://github.com/BritWallace)<br>
 Christen Weston [paleeserecycle@gmail.com](mailto:paleeserecycle@gmail.com) [LinkedIn](https://www.linkedin.com/in/christenweston/) [GitHub](https://github.com/ChristenWeston)<br>
 John Whitten: [johnwhitten.studio@gmail.com](mailto:johnwhitten.studio@gmail.com) [LinkedIn](https://www.linkedin.com/in/johnwhitten-studio/) [GitHub](https://github.com/johnwhittenstudio)
 =======
+=======
+>>>>>>> parent of 687ed67 (AllTheThings)
 Phil Curran [pecurran@hotmail.com](mailto:pecurran@hotmail.com)
 Anastasia Han [anastasia.han@yahoo.com](mailto:anastasia.han@yahoo.com) 
 Brit Wallace [britwallace888@gmail.com](mailto:britwallace888@gmail.com)
